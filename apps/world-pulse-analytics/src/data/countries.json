@@ -1,0 +1,1562 @@
+[
+  {
+    "geo": "afg",
+    "name": "Afghanistan",
+    "region": "asia",
+    "latitude": 33,
+    "longitude": 66,
+    "iso2": "AF"
+  },
+  {
+    "geo": "alb",
+    "name": "Albania",
+    "region": "europe",
+    "latitude": 41,
+    "longitude": 20,
+    "iso2": "AL"
+  },
+  {
+    "geo": "dza",
+    "name": "Algeria",
+    "region": "africa",
+    "latitude": 28,
+    "longitude": 3,
+    "iso2": "DZ"
+  },
+  {
+    "geo": "and",
+    "name": "Andorra",
+    "region": "europe",
+    "latitude": 42.50779,
+    "longitude": 1.52109,
+    "iso2": "AD"
+  },
+  {
+    "geo": "ago",
+    "name": "Angola",
+    "region": "africa",
+    "latitude": -12.5,
+    "longitude": 18.5,
+    "iso2": "AO"
+  },
+  {
+    "geo": "atg",
+    "name": "Antigua and Barbuda",
+    "region": "americas",
+    "latitude": 17.05,
+    "longitude": -61.8,
+    "iso2": "AG"
+  },
+  {
+    "geo": "arg",
+    "name": "Argentina",
+    "region": "americas",
+    "latitude": -34,
+    "longitude": -64,
+    "iso2": "AR"
+  },
+  {
+    "geo": "arm",
+    "name": "Armenia",
+    "region": "europe",
+    "latitude": 40.25,
+    "longitude": 45,
+    "iso2": "AM"
+  },
+  {
+    "geo": "aus",
+    "name": "Australia",
+    "region": "oceania",
+    "latitude": -25,
+    "longitude": 135,
+    "iso2": "AU"
+  },
+  {
+    "geo": "aut",
+    "name": "Austria",
+    "region": "europe",
+    "latitude": 47.33333,
+    "longitude": 13.33333,
+    "iso2": "AT"
+  },
+  {
+    "geo": "aze",
+    "name": "Azerbaijan",
+    "region": "europe",
+    "latitude": 40.5,
+    "longitude": 47.5,
+    "iso2": "AZ"
+  },
+  {
+    "geo": "bhs",
+    "name": "Bahamas",
+    "region": "americas",
+    "latitude": 25.04082,
+    "longitude": -77.37122,
+    "iso2": "BS"
+  },
+  {
+    "geo": "bhr",
+    "name": "Bahrain",
+    "region": "asia",
+    "latitude": 26.03333,
+    "longitude": 50.55,
+    "iso2": "BH"
+  },
+  {
+    "geo": "bgd",
+    "name": "Bangladesh",
+    "region": "asia",
+    "latitude": 24,
+    "longitude": 90,
+    "iso2": "BD"
+  },
+  {
+    "geo": "brb",
+    "name": "Barbados",
+    "region": "americas",
+    "latitude": 13.16667,
+    "longitude": -59.53333,
+    "iso2": "BB"
+  },
+  {
+    "geo": "blr",
+    "name": "Belarus",
+    "region": "europe",
+    "latitude": 53,
+    "longitude": 28,
+    "iso2": "BY"
+  },
+  {
+    "geo": "bel",
+    "name": "Belgium",
+    "region": "europe",
+    "latitude": 50.75,
+    "longitude": 4.5,
+    "iso2": "BE"
+  },
+  {
+    "geo": "blz",
+    "name": "Belize",
+    "region": "americas",
+    "latitude": 17.49952,
+    "longitude": -88.19756,
+    "iso2": "BZ"
+  },
+  {
+    "geo": "ben",
+    "name": "Benin",
+    "region": "africa",
+    "latitude": 9.5,
+    "longitude": 2.25,
+    "iso2": "BJ"
+  },
+  {
+    "geo": "btn",
+    "name": "Bhutan",
+    "region": "asia",
+    "latitude": 27.5,
+    "longitude": 90.5,
+    "iso2": "BT"
+  },
+  {
+    "geo": "bol",
+    "name": "Bolivia",
+    "region": "americas",
+    "latitude": -17,
+    "longitude": -65,
+    "iso2": "BO"
+  },
+  {
+    "geo": "bih",
+    "name": "Bosnia and Herzegovina",
+    "region": "europe",
+    "latitude": 44.25,
+    "longitude": 17.83333,
+    "iso2": "BA"
+  },
+  {
+    "geo": "bwa",
+    "name": "Botswana",
+    "region": "africa",
+    "latitude": -22,
+    "longitude": 24,
+    "iso2": "BW"
+  },
+  {
+    "geo": "bra",
+    "name": "Brazil",
+    "region": "americas",
+    "latitude": -10,
+    "longitude": -55,
+    "iso2": "BR"
+  },
+  {
+    "geo": "brn",
+    "name": "Brunei",
+    "region": "asia",
+    "latitude": 4.5,
+    "longitude": 114.66667,
+    "iso2": "BN"
+  },
+  {
+    "geo": "bgr",
+    "name": "Bulgaria",
+    "region": "europe",
+    "latitude": 42.66667,
+    "longitude": 25.25,
+    "iso2": "BG"
+  },
+  {
+    "geo": "bfa",
+    "name": "Burkina Faso",
+    "region": "africa",
+    "latitude": 12.5,
+    "longitude": -1.66667,
+    "iso2": "BF"
+  },
+  {
+    "geo": "bdi",
+    "name": "Burundi",
+    "region": "africa",
+    "latitude": -3.5,
+    "longitude": 30,
+    "iso2": "BI"
+  },
+  {
+    "geo": "khm",
+    "name": "Cambodia",
+    "region": "asia",
+    "latitude": 13,
+    "longitude": 105,
+    "iso2": "KH"
+  },
+  {
+    "geo": "cmr",
+    "name": "Cameroon",
+    "region": "africa",
+    "latitude": 6,
+    "longitude": 12.5,
+    "iso2": "CM"
+  },
+  {
+    "geo": "can",
+    "name": "Canada",
+    "region": "americas",
+    "latitude": 60.10867,
+    "longitude": -113.64258,
+    "iso2": "CA"
+  },
+  {
+    "geo": "cpv",
+    "name": "Cape Verde",
+    "region": "africa",
+    "latitude": 16,
+    "longitude": -24,
+    "iso2": "CV"
+  },
+  {
+    "geo": "caf",
+    "name": "Central African Republic",
+    "region": "africa",
+    "latitude": 7,
+    "longitude": 21,
+    "iso2": "CF"
+  },
+  {
+    "geo": "tcd",
+    "name": "Chad",
+    "region": "africa",
+    "latitude": 15,
+    "longitude": 19,
+    "iso2": "TD"
+  },
+  {
+    "geo": "chl",
+    "name": "Chile",
+    "region": "americas",
+    "latitude": -33.45694,
+    "longitude": -70.64827,
+    "iso2": "CL"
+  },
+  {
+    "geo": "chn",
+    "name": "China",
+    "region": "asia",
+    "latitude": 35,
+    "longitude": 105,
+    "iso2": "CN"
+  },
+  {
+    "geo": "col",
+    "name": "Colombia",
+    "region": "americas",
+    "latitude": 4,
+    "longitude": -73.25,
+    "iso2": "CO"
+  },
+  {
+    "geo": "com",
+    "name": "Comoros",
+    "region": "africa",
+    "latitude": -12.23333,
+    "longitude": 44.44553,
+    "iso2": "KM"
+  },
+  {
+    "geo": "cod",
+    "name": "Congo, Dem. Rep.",
+    "region": "africa",
+    "latitude": -2.5,
+    "longitude": 23.5,
+    "iso2": "CD"
+  },
+  {
+    "geo": "cog",
+    "name": "Congo, Rep.",
+    "region": "africa",
+    "latitude": -1,
+    "longitude": 15.5,
+    "iso2": "CG"
+  },
+  {
+    "geo": "cri",
+    "name": "Costa Rica",
+    "region": "americas",
+    "latitude": 10,
+    "longitude": -84,
+    "iso2": "CR"
+  },
+  {
+    "geo": "civ",
+    "name": "Cote d'Ivoire",
+    "region": "africa",
+    "latitude": 8,
+    "longitude": -5.5,
+    "iso2": "CI"
+  },
+  {
+    "geo": "hrv",
+    "name": "Croatia",
+    "region": "europe",
+    "latitude": 45.16667,
+    "longitude": 15.5,
+    "iso2": "HR"
+  },
+  {
+    "geo": "cub",
+    "name": "Cuba",
+    "region": "americas",
+    "latitude": 22,
+    "longitude": -79.5,
+    "iso2": "CU"
+  },
+  {
+    "geo": "cyp",
+    "name": "Cyprus",
+    "region": "europe",
+    "latitude": 35,
+    "longitude": 33,
+    "iso2": "CY"
+  },
+  {
+    "geo": "cze",
+    "name": "Czech Republic",
+    "region": "europe",
+    "latitude": 49.75,
+    "longitude": 15,
+    "iso2": "CZ"
+  },
+  {
+    "geo": "dnk",
+    "name": "Denmark",
+    "region": "europe",
+    "latitude": 56,
+    "longitude": 10,
+    "iso2": "DK"
+  },
+  {
+    "geo": "dji",
+    "name": "Djibouti",
+    "region": "africa",
+    "latitude": 11.58901,
+    "longitude": 43.14503,
+    "iso2": "DJ"
+  },
+  {
+    "geo": "dma",
+    "name": "Dominica",
+    "region": "americas",
+    "latitude": 15.5,
+    "longitude": -61.33333,
+    "iso2": "DM"
+  },
+  {
+    "geo": "dom",
+    "name": "Dominican Republic",
+    "region": "americas",
+    "latitude": 19,
+    "longitude": -70.66667,
+    "iso2": "DO"
+  },
+  {
+    "geo": "ecu",
+    "name": "Ecuador",
+    "region": "americas",
+    "latitude": -1.25,
+    "longitude": -78.25,
+    "iso2": "EC"
+  },
+  {
+    "geo": "egy",
+    "name": "Egypt",
+    "region": "africa",
+    "latitude": 27,
+    "longitude": 30,
+    "iso2": "EG"
+  },
+  {
+    "geo": "slv",
+    "name": "El Salvador",
+    "region": "americas",
+    "latitude": 13.83333,
+    "longitude": -88.91667,
+    "iso2": "SV"
+  },
+  {
+    "geo": "gnq",
+    "name": "Equatorial Guinea",
+    "region": "africa",
+    "latitude": 1.7,
+    "longitude": 10.5,
+    "iso2": "GQ"
+  },
+  {
+    "geo": "eri",
+    "name": "Eritrea",
+    "region": "africa",
+    "latitude": 15,
+    "longitude": 39,
+    "iso2": "ER"
+  },
+  {
+    "geo": "est",
+    "name": "Estonia",
+    "region": "europe",
+    "latitude": 59,
+    "longitude": 26,
+    "iso2": "EE"
+  },
+  {
+    "geo": "swz",
+    "name": "Eswatini",
+    "region": "africa",
+    "latitude": -26.5,
+    "longitude": 31.5,
+    "iso2": "SZ"
+  },
+  {
+    "geo": "eth",
+    "name": "Ethiopia",
+    "region": "africa",
+    "latitude": 9,
+    "longitude": 39.5,
+    "iso2": "ET"
+  },
+  {
+    "geo": "fji",
+    "name": "Fiji",
+    "region": "oceania",
+    "latitude": -18,
+    "longitude": 178,
+    "iso2": "FJ"
+  },
+  {
+    "geo": "fin",
+    "name": "Finland",
+    "region": "europe",
+    "latitude": 64,
+    "longitude": 26,
+    "iso2": "FI"
+  },
+  {
+    "geo": "fra",
+    "name": "France",
+    "region": "europe",
+    "latitude": 46,
+    "longitude": 2,
+    "iso2": "FR"
+  },
+  {
+    "geo": "gab",
+    "name": "Gabon",
+    "region": "africa",
+    "latitude": -1,
+    "longitude": 11.75,
+    "iso2": "GA"
+  },
+  {
+    "geo": "gmb",
+    "name": "Gambia",
+    "region": "africa",
+    "latitude": 13.5,
+    "longitude": -15.5,
+    "iso2": "GM"
+  },
+  {
+    "geo": "geo",
+    "name": "Georgia",
+    "region": "europe",
+    "latitude": 41.99998,
+    "longitude": 43.4999,
+    "iso2": "GE"
+  },
+  {
+    "geo": "deu",
+    "name": "Germany",
+    "region": "europe",
+    "latitude": 51.5,
+    "longitude": 10.5,
+    "iso2": "DE"
+  },
+  {
+    "geo": "gha",
+    "name": "Ghana",
+    "region": "africa",
+    "latitude": 8.1,
+    "longitude": -1.2,
+    "iso2": "GH"
+  },
+  {
+    "geo": "grc",
+    "name": "Greece",
+    "region": "europe",
+    "latitude": 39,
+    "longitude": 22,
+    "iso2": "GR"
+  },
+  {
+    "geo": "grd",
+    "name": "Grenada",
+    "region": "americas",
+    "latitude": 12.11667,
+    "longitude": -61.66667,
+    "iso2": "GD"
+  },
+  {
+    "geo": "gtm",
+    "name": "Guatemala",
+    "region": "americas",
+    "latitude": 14.64072,
+    "longitude": -90.51327,
+    "iso2": "GT"
+  },
+  {
+    "geo": "gin",
+    "name": "Guinea",
+    "region": "africa",
+    "latitude": 10.83333,
+    "longitude": -10.66667,
+    "iso2": "GN"
+  },
+  {
+    "geo": "gnb",
+    "name": "Guinea-Bissau",
+    "region": "africa",
+    "latitude": 12,
+    "longitude": -15,
+    "iso2": "GW"
+  },
+  {
+    "geo": "guy",
+    "name": "Guyana",
+    "region": "americas",
+    "latitude": 5,
+    "longitude": -59,
+    "iso2": "GY"
+  },
+  {
+    "geo": "hti",
+    "name": "Haiti",
+    "region": "americas",
+    "latitude": 19,
+    "longitude": -72.41667,
+    "iso2": "HT"
+  },
+  {
+    "geo": "hnd",
+    "name": "Honduras",
+    "region": "americas",
+    "latitude": 15,
+    "longitude": -86.5,
+    "iso2": "HN"
+  },
+  {
+    "geo": "hkg",
+    "name": "Hong Kong, China",
+    "region": "asia",
+    "latitude": 22.28552,
+    "longitude": 114.15769,
+    "iso2": "HK"
+  },
+  {
+    "geo": "hun",
+    "name": "Hungary",
+    "region": "europe",
+    "latitude": 47,
+    "longitude": 20,
+    "iso2": "HU"
+  },
+  {
+    "geo": "isl",
+    "name": "Iceland",
+    "region": "europe",
+    "latitude": 65,
+    "longitude": -18,
+    "iso2": "IS"
+  },
+  {
+    "geo": "ind",
+    "name": "India",
+    "region": "asia",
+    "latitude": 22,
+    "longitude": 79,
+    "iso2": "IN"
+  },
+  {
+    "geo": "idn",
+    "name": "Indonesia",
+    "region": "asia",
+    "latitude": -5,
+    "longitude": 120,
+    "iso2": "ID"
+  },
+  {
+    "geo": "irn",
+    "name": "Iran",
+    "region": "asia",
+    "latitude": 32,
+    "longitude": 53,
+    "iso2": "IR"
+  },
+  {
+    "geo": "irq",
+    "name": "Iraq",
+    "region": "asia",
+    "latitude": 33,
+    "longitude": 44,
+    "iso2": "IQ"
+  },
+  {
+    "geo": "irl",
+    "name": "Ireland",
+    "region": "europe",
+    "latitude": 53,
+    "longitude": -8,
+    "iso2": "IE"
+  },
+  {
+    "geo": "isr",
+    "name": "Israel",
+    "region": "asia",
+    "latitude": 31.5,
+    "longitude": 34.75,
+    "iso2": "IL"
+  },
+  {
+    "geo": "ita",
+    "name": "Italy",
+    "region": "europe",
+    "latitude": 42.83333,
+    "longitude": 12.83333,
+    "iso2": "IT"
+  },
+  {
+    "geo": "jam",
+    "name": "Jamaica",
+    "region": "americas",
+    "latitude": 18.16667,
+    "longitude": -77.25,
+    "iso2": "JM"
+  },
+  {
+    "geo": "jpn",
+    "name": "Japan",
+    "region": "asia",
+    "latitude": 35.68536,
+    "longitude": 139.75309,
+    "iso2": "JP"
+  },
+  {
+    "geo": "jor",
+    "name": "Jordan",
+    "region": "asia",
+    "latitude": 31,
+    "longitude": 36,
+    "iso2": "JO"
+  },
+  {
+    "geo": "kaz",
+    "name": "Kazakhstan",
+    "region": "asia",
+    "latitude": 48,
+    "longitude": 68,
+    "iso2": "KZ"
+  },
+  {
+    "geo": "ken",
+    "name": "Kenya",
+    "region": "africa",
+    "latitude": 1,
+    "longitude": 38,
+    "iso2": "KE"
+  },
+  {
+    "geo": "kir",
+    "name": "Kiribati",
+    "region": "oceania",
+    "latitude": 1.421,
+    "longitude": 172.984,
+    "iso2": "KI"
+  },
+  {
+    "geo": "kwt",
+    "name": "Kuwait",
+    "region": "asia",
+    "latitude": 29.36972,
+    "longitude": 47.97833,
+    "iso2": "KW"
+  },
+  {
+    "geo": "kgz",
+    "name": "Kyrgyz Republic",
+    "region": "asia",
+    "latitude": 41.5,
+    "longitude": 75,
+    "iso2": "KG"
+  },
+  {
+    "geo": "lao",
+    "name": "Lao",
+    "region": "asia",
+    "latitude": 18,
+    "longitude": 105,
+    "iso2": "LA"
+  },
+  {
+    "geo": "lva",
+    "name": "Latvia",
+    "region": "europe",
+    "latitude": 57,
+    "longitude": 25,
+    "iso2": "LV"
+  },
+  {
+    "geo": "lbn",
+    "name": "Lebanon",
+    "region": "asia",
+    "latitude": 33.83333,
+    "longitude": 35.83333,
+    "iso2": "LB"
+  },
+  {
+    "geo": "lso",
+    "name": "Lesotho",
+    "region": "africa",
+    "latitude": -29.5,
+    "longitude": 28.25,
+    "iso2": "LS"
+  },
+  {
+    "geo": "lbr",
+    "name": "Liberia",
+    "region": "africa",
+    "latitude": 6.5,
+    "longitude": -9.5,
+    "iso2": "LR"
+  },
+  {
+    "geo": "lby",
+    "name": "Libya",
+    "region": "africa",
+    "latitude": 28,
+    "longitude": 17,
+    "iso2": "LY"
+  },
+  {
+    "geo": "ltu",
+    "name": "Lithuania",
+    "region": "europe",
+    "latitude": 55.41667,
+    "longitude": 24,
+    "iso2": "LT"
+  },
+  {
+    "geo": "lux",
+    "name": "Luxembourg",
+    "region": "europe",
+    "latitude": 49.61167,
+    "longitude": 6.13,
+    "iso2": "LU"
+  },
+  {
+    "geo": "mdg",
+    "name": "Madagascar",
+    "region": "africa",
+    "latitude": -20,
+    "longitude": 47,
+    "iso2": "MG"
+  },
+  {
+    "geo": "mwi",
+    "name": "Malawi",
+    "region": "africa",
+    "latitude": -13.5,
+    "longitude": 34,
+    "iso2": "MW"
+  },
+  {
+    "geo": "mys",
+    "name": "Malaysia",
+    "region": "asia",
+    "latitude": 2.5,
+    "longitude": 112.5,
+    "iso2": "MY"
+  },
+  {
+    "geo": "mdv",
+    "name": "Maldives",
+    "region": "asia",
+    "latitude": 3.2,
+    "longitude": 73,
+    "iso2": "MV"
+  },
+  {
+    "geo": "mli",
+    "name": "Mali",
+    "region": "africa",
+    "latitude": 18,
+    "longitude": -2,
+    "iso2": "ML"
+  },
+  {
+    "geo": "mlt",
+    "name": "Malta",
+    "region": "europe",
+    "latitude": 35.91667,
+    "longitude": 14.43333,
+    "iso2": "MT"
+  },
+  {
+    "geo": "mhl",
+    "name": "Marshall Islands",
+    "region": "oceania",
+    "latitude": 7.113,
+    "longitude": 171.236,
+    "iso2": "MH"
+  },
+  {
+    "geo": "mrt",
+    "name": "Mauritania",
+    "region": "africa",
+    "latitude": 20.25,
+    "longitude": -10.5,
+    "iso2": "MR"
+  },
+  {
+    "geo": "mus",
+    "name": "Mauritius",
+    "region": "africa",
+    "latitude": -20.3,
+    "longitude": 57.58333,
+    "iso2": "MU"
+  },
+  {
+    "geo": "mex",
+    "name": "Mexico",
+    "region": "americas",
+    "latitude": 19.42847,
+    "longitude": -99.12766,
+    "iso2": "MX"
+  },
+  {
+    "geo": "fsm",
+    "name": "Micronesia, Fed. Sts.",
+    "region": "oceania",
+    "latitude": 6.924,
+    "longitude": 158.162,
+    "iso2": "FM"
+  },
+  {
+    "geo": "mda",
+    "name": "Moldova",
+    "region": "europe",
+    "latitude": 47.25,
+    "longitude": 28.58333,
+    "iso2": "MD"
+  },
+  {
+    "geo": "mco",
+    "name": "Monaco",
+    "region": "europe",
+    "latitude": 43.73333,
+    "longitude": 7.41667,
+    "iso2": "MC"
+  },
+  {
+    "geo": "mng",
+    "name": "Mongolia",
+    "region": "asia",
+    "latitude": 46,
+    "longitude": 105,
+    "iso2": "MN"
+  },
+  {
+    "geo": "mne",
+    "name": "Montenegro",
+    "region": "europe",
+    "latitude": 42.75,
+    "longitude": 19.25,
+    "iso2": "ME"
+  },
+  {
+    "geo": "mar",
+    "name": "Morocco",
+    "region": "africa",
+    "latitude": 32,
+    "longitude": -6,
+    "iso2": "MA"
+  },
+  {
+    "geo": "moz",
+    "name": "Mozambique",
+    "region": "africa",
+    "latitude": -18.25,
+    "longitude": 35,
+    "iso2": "MZ"
+  },
+  {
+    "geo": "mmr",
+    "name": "Myanmar",
+    "region": "asia",
+    "latitude": 21,
+    "longitude": 96,
+    "iso2": "MM"
+  },
+  {
+    "geo": "nam",
+    "name": "Namibia",
+    "region": "africa",
+    "latitude": -22,
+    "longitude": 17,
+    "iso2": "NA"
+  },
+  {
+    "geo": "nru",
+    "name": "Nauru",
+    "region": "oceania",
+    "latitude": -0.517,
+    "longitude": 166.933,
+    "iso2": "NR"
+  },
+  {
+    "geo": "npl",
+    "name": "Nepal",
+    "region": "asia",
+    "latitude": 28,
+    "longitude": 84,
+    "iso2": "NP"
+  },
+  {
+    "geo": "nld",
+    "name": "Netherlands",
+    "region": "europe",
+    "latitude": 52.25,
+    "longitude": 5.75,
+    "iso2": "NL"
+  },
+  {
+    "geo": "nzl",
+    "name": "New Zealand",
+    "region": "oceania",
+    "latitude": -42,
+    "longitude": 174,
+    "iso2": "NZ"
+  },
+  {
+    "geo": "nic",
+    "name": "Nicaragua",
+    "region": "americas",
+    "latitude": 13,
+    "longitude": -85,
+    "iso2": "NI"
+  },
+  {
+    "geo": "ner",
+    "name": "Niger",
+    "region": "africa",
+    "latitude": 18,
+    "longitude": 9,
+    "iso2": "NE"
+  },
+  {
+    "geo": "nga",
+    "name": "Nigeria",
+    "region": "africa",
+    "latitude": 10,
+    "longitude": 8,
+    "iso2": "NG"
+  },
+  {
+    "geo": "prk",
+    "name": "North Korea",
+    "region": "asia",
+    "latitude": 40,
+    "longitude": 127,
+    "iso2": "KP"
+  },
+  {
+    "geo": "mkd",
+    "name": "North Macedonia",
+    "region": "europe",
+    "latitude": 41.66667,
+    "longitude": 21.75,
+    "iso2": "MK"
+  },
+  {
+    "geo": "nor",
+    "name": "Norway",
+    "region": "europe",
+    "latitude": 62,
+    "longitude": 10,
+    "iso2": "NO"
+  },
+  {
+    "geo": "omn",
+    "name": "Oman",
+    "region": "asia",
+    "latitude": 21,
+    "longitude": 57,
+    "iso2": "OM"
+  },
+  {
+    "geo": "pak",
+    "name": "Pakistan",
+    "region": "asia",
+    "latitude": 30,
+    "longitude": 70,
+    "iso2": "PK"
+  },
+  {
+    "geo": "plw",
+    "name": "Palau",
+    "region": "oceania",
+    "latitude": 7.503,
+    "longitude": 134.621,
+    "iso2": "PW"
+  },
+  {
+    "geo": "pse",
+    "name": "Palestine",
+    "region": "asia",
+    "latitude": 31.92157,
+    "longitude": 35.20329,
+    "iso2": "PS"
+  },
+  {
+    "geo": "pan",
+    "name": "Panama",
+    "region": "americas",
+    "latitude": 8.9936,
+    "longitude": -79.51973,
+    "iso2": "PA"
+  },
+  {
+    "geo": "png",
+    "name": "Papua New Guinea",
+    "region": "oceania",
+    "latitude": -6,
+    "longitude": 147,
+    "iso2": "PG"
+  },
+  {
+    "geo": "pry",
+    "name": "Paraguay",
+    "region": "americas",
+    "latitude": -23.33333,
+    "longitude": -58,
+    "iso2": "PY"
+  },
+  {
+    "geo": "per",
+    "name": "Peru",
+    "region": "americas",
+    "latitude": -10,
+    "longitude": -75.25,
+    "iso2": "PE"
+  },
+  {
+    "geo": "phl",
+    "name": "Philippines",
+    "region": "asia",
+    "latitude": 13,
+    "longitude": 122,
+    "iso2": "PH"
+  },
+  {
+    "geo": "pol",
+    "name": "Poland",
+    "region": "europe",
+    "latitude": 52,
+    "longitude": 20,
+    "iso2": "PL"
+  },
+  {
+    "geo": "prt",
+    "name": "Portugal",
+    "region": "europe",
+    "latitude": 39.6945,
+    "longitude": -8.13057,
+    "iso2": "PT"
+  },
+  {
+    "geo": "qat",
+    "name": "Qatar",
+    "region": "asia",
+    "latitude": 25.27932,
+    "longitude": 51.52245,
+    "iso2": "QA"
+  },
+  {
+    "geo": "rou",
+    "name": "Romania",
+    "region": "europe",
+    "latitude": 46,
+    "longitude": 25,
+    "iso2": "RO"
+  },
+  {
+    "geo": "rus",
+    "name": "Russia",
+    "region": "europe",
+    "latitude": 60,
+    "longitude": 100,
+    "iso2": "RU"
+  },
+  {
+    "geo": "rwa",
+    "name": "Rwanda",
+    "region": "africa",
+    "latitude": -2,
+    "longitude": 30,
+    "iso2": "RW"
+  },
+  {
+    "geo": "wsm",
+    "name": "Samoa",
+    "region": "oceania",
+    "latitude": -13.8,
+    "longitude": -172.13333,
+    "iso2": "WS"
+  },
+  {
+    "geo": "smr",
+    "name": "San Marino",
+    "region": "europe",
+    "latitude": 43.93667,
+    "longitude": 12.44639,
+    "iso2": "SM"
+  },
+  {
+    "geo": "stp",
+    "name": "Sao Tome and Principe",
+    "region": "africa",
+    "latitude": 1,
+    "longitude": 7,
+    "iso2": "ST"
+  },
+  {
+    "geo": "sau",
+    "name": "Saudi Arabia",
+    "region": "asia",
+    "latitude": 25,
+    "longitude": 45,
+    "iso2": "SA"
+  },
+  {
+    "geo": "sen",
+    "name": "Senegal",
+    "region": "africa",
+    "latitude": 14.5,
+    "longitude": -14.25,
+    "iso2": "SN"
+  },
+  {
+    "geo": "srb",
+    "name": "Serbia",
+    "region": "europe",
+    "latitude": 44.81892,
+    "longitude": 20.45998,
+    "iso2": "RS"
+  },
+  {
+    "geo": "syc",
+    "name": "Seychelles",
+    "region": "africa",
+    "latitude": -4.58333,
+    "longitude": 55.66667,
+    "iso2": "SC"
+  },
+  {
+    "geo": "sle",
+    "name": "Sierra Leone",
+    "region": "africa",
+    "latitude": 8.5,
+    "longitude": -11.5,
+    "iso2": "SL"
+  },
+  {
+    "geo": "sgp",
+    "name": "Singapore",
+    "region": "asia",
+    "latitude": 1.28967,
+    "longitude": 103.85007,
+    "iso2": "SG"
+  },
+  {
+    "geo": "svk",
+    "name": "Slovak Republic",
+    "region": "europe",
+    "latitude": 48.66667,
+    "longitude": 19.5,
+    "iso2": "SK"
+  },
+  {
+    "geo": "svn",
+    "name": "Slovenia",
+    "region": "europe",
+    "latitude": 46.08333,
+    "longitude": 15,
+    "iso2": "SI"
+  },
+  {
+    "geo": "slb",
+    "name": "Solomon Islands",
+    "region": "oceania",
+    "latitude": -8,
+    "longitude": 159,
+    "iso2": "SB"
+  },
+  {
+    "geo": "som",
+    "name": "Somalia",
+    "region": "africa",
+    "latitude": 6,
+    "longitude": 48,
+    "iso2": "SO"
+  },
+  {
+    "geo": "zaf",
+    "name": "South Africa",
+    "region": "africa",
+    "latitude": -29,
+    "longitude": 24,
+    "iso2": "ZA"
+  },
+  {
+    "geo": "kor",
+    "name": "South Korea",
+    "region": "asia",
+    "latitude": 36.5,
+    "longitude": 127.75,
+    "iso2": "KR"
+  },
+  {
+    "geo": "ssd",
+    "name": "South Sudan",
+    "region": "africa",
+    "latitude": 7.5,
+    "longitude": 30,
+    "iso2": "SS"
+  },
+  {
+    "geo": "esp",
+    "name": "Spain",
+    "region": "europe",
+    "latitude": 40,
+    "longitude": -4,
+    "iso2": "ES"
+  },
+  {
+    "geo": "lka",
+    "name": "Sri Lanka",
+    "region": "asia",
+    "latitude": 7.75,
+    "longitude": 80.75,
+    "iso2": "LK"
+  },
+  {
+    "geo": "kna",
+    "name": "St. Kitts and Nevis",
+    "region": "americas",
+    "latitude": 17.33333,
+    "longitude": -62.75,
+    "iso2": "KN"
+  },
+  {
+    "geo": "lca",
+    "name": "St. Lucia",
+    "region": "americas",
+    "latitude": 13.88333,
+    "longitude": -60.96667,
+    "iso2": "LC"
+  },
+  {
+    "geo": "vct",
+    "name": "St. Vincent and the Grenadines",
+    "region": "americas",
+    "latitude": 13.08333,
+    "longitude": -61.2,
+    "iso2": "VC"
+  },
+  {
+    "geo": "sdn",
+    "name": "Sudan",
+    "region": "africa",
+    "latitude": 16,
+    "longitude": 30,
+    "iso2": "SD"
+  },
+  {
+    "geo": "sur",
+    "name": "Suriname",
+    "region": "americas",
+    "latitude": 4,
+    "longitude": -56,
+    "iso2": "SR"
+  },
+  {
+    "geo": "swe",
+    "name": "Sweden",
+    "region": "europe",
+    "latitude": 62,
+    "longitude": 15,
+    "iso2": "SE"
+  },
+  {
+    "geo": "che",
+    "name": "Switzerland",
+    "region": "europe",
+    "latitude": 47.00016,
+    "longitude": 8.01427,
+    "iso2": "CH"
+  },
+  {
+    "geo": "syr",
+    "name": "Syria",
+    "region": "asia",
+    "latitude": 35,
+    "longitude": 38,
+    "iso2": "SY"
+  },
+  {
+    "geo": "twn",
+    "name": "Taiwan",
+    "region": "asia",
+    "latitude": 24,
+    "longitude": 121,
+    "iso2": "TW"
+  },
+  {
+    "geo": "tjk",
+    "name": "Tajikistan",
+    "region": "asia",
+    "latitude": 39,
+    "longitude": 71,
+    "iso2": "TJ"
+  },
+  {
+    "geo": "tza",
+    "name": "Tanzania",
+    "region": "africa",
+    "latitude": -6,
+    "longitude": 35,
+    "iso2": "TZ"
+  },
+  {
+    "geo": "tha",
+    "name": "Thailand",
+    "region": "asia",
+    "latitude": 15.5,
+    "longitude": 101,
+    "iso2": "TH"
+  },
+  {
+    "geo": "tls",
+    "name": "Timor-Leste",
+    "region": "asia",
+    "latitude": -8.83333,
+    "longitude": 125.75,
+    "iso2": "TL"
+  },
+  {
+    "geo": "tgo",
+    "name": "Togo",
+    "region": "africa",
+    "latitude": 8.66667,
+    "longitude": 1.08333,
+    "iso2": "TG"
+  },
+  {
+    "geo": "ton",
+    "name": "Tonga",
+    "region": "oceania",
+    "latitude": -20,
+    "longitude": -175,
+    "iso2": "TO"
+  },
+  {
+    "geo": "tto",
+    "name": "Trinidad and Tobago",
+    "region": "americas",
+    "latitude": 11,
+    "longitude": -61,
+    "iso2": "TT"
+  },
+  {
+    "geo": "tun",
+    "name": "Tunisia",
+    "region": "africa",
+    "latitude": 34,
+    "longitude": 9,
+    "iso2": "TN"
+  },
+  {
+    "geo": "tur",
+    "name": "Turkey",
+    "region": "europe",
+    "latitude": 39,
+    "longitude": 35,
+    "iso2": "TR"
+  },
+  {
+    "geo": "tkm",
+    "name": "Turkmenistan",
+    "region": "asia",
+    "latitude": 39.75,
+    "longitude": 59.66667,
+    "iso2": "TM"
+  },
+  {
+    "geo": "tuv",
+    "name": "Tuvalu",
+    "region": "oceania",
+    "latitude": -8.51719,
+    "longitude": 179.14478,
+    "iso2": "TV"
+  },
+  {
+    "geo": "are",
+    "name": "UAE",
+    "region": "asia",
+    "latitude": 23.75,
+    "longitude": 54.5,
+    "iso2": "AE"
+  },
+  {
+    "geo": "uga",
+    "name": "Uganda",
+    "region": "africa",
+    "latitude": 1.25,
+    "longitude": 32.5,
+    "iso2": "UG"
+  },
+  {
+    "geo": "gbr",
+    "name": "UK",
+    "region": "europe",
+    "latitude": 54.75844,
+    "longitude": -2.69531,
+    "iso2": "GB"
+  },
+  {
+    "geo": "ukr",
+    "name": "Ukraine",
+    "region": "europe",
+    "latitude": 49,
+    "longitude": 32,
+    "iso2": "UA"
+  },
+  {
+    "geo": "ury",
+    "name": "Uruguay",
+    "region": "americas",
+    "latitude": -33,
+    "longitude": -56,
+    "iso2": "UY"
+  },
+  {
+    "geo": "usa",
+    "name": "USA",
+    "region": "americas",
+    "latitude": 39.76,
+    "longitude": -98.5,
+    "iso2": "US"
+  },
+  {
+    "geo": "uzb",
+    "name": "Uzbekistan",
+    "region": "asia",
+    "latitude": 41.66667,
+    "longitude": 63.83333,
+    "iso2": "UZ"
+  },
+  {
+    "geo": "vut",
+    "name": "Vanuatu",
+    "region": "oceania",
+    "latitude": -16,
+    "longitude": 167,
+    "iso2": "VU"
+  },
+  {
+    "geo": "ven",
+    "name": "Venezuela",
+    "region": "americas",
+    "latitude": 8,
+    "longitude": -66,
+    "iso2": "VE"
+  },
+  {
+    "geo": "vnm",
+    "name": "Vietnam",
+    "region": "asia",
+    "latitude": 16.16667,
+    "longitude": 107.83333,
+    "iso2": "VN"
+  },
+  {
+    "geo": "yem",
+    "name": "Yemen",
+    "region": "asia",
+    "latitude": 15.5,
+    "longitude": 47.5,
+    "iso2": "YE"
+  },
+  {
+    "geo": "zmb",
+    "name": "Zambia",
+    "region": "africa",
+    "latitude": -14.33333,
+    "longitude": 28.5,
+    "iso2": "ZM"
+  },
+  {
+    "geo": "zwe",
+    "name": "Zimbabwe",
+    "region": "africa",
+    "latitude": -19,
+    "longitude": 29.75,
+    "iso2": "ZW"
+  }
+]

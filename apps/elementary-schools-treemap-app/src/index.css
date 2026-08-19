@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* 青綠膠囊互動語言（樣式對齊世界發展數據分析平台的深色模式切換鈕）：
+   未啟用態=淡綠底+accent 字，hover 加深；啟用態=實色 accent（inline style 給）；
+   :active 縮放回饋、:focus-visible 無障礙 focus ring。
+   --accent / --accent-fg 由 App 根節點依當前主題注入。 */
+.pill-toggle[aria-pressed="false"] {
+  background: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+  color: var(--accent) !important;
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent) !important;
+  transition: all 150ms ease-in-out !important;
+}
+.pill-toggle[aria-pressed="false"]:hover {
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent) !important;
+}
+.pill-toggle:active {
+  background: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+  transform: scale(0.95);
+}
+.pill-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 年份滑桿（樣式對齊世界發展數據分析平台 .year-range）：
+   自訂軌道=已播放段 accent 漸層（--range-progress 由 inline style 傳入，
+   inline style 到不了偽元素、但 CSS 自訂屬性會沿繼承鏈傳進去）；
+   滑塊自畫圓形，margin-top 手動置中「(軌道高-滑塊高)/2」。 */
+.year-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.year-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--accent) var(--range-progress, 0%),
+    var(--color-border) var(--range-progress, 0%)
+  );
+}
+.year-range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+.year-range::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.year-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+}
+.year-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+}
+.year-range:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 輸入框互動樣式（比照世界平台 .app-input）：hover 邊框轉 accent、
+   focus 有 accent 光暈、160ms 過渡；基礎外觀（surface 底/border/圓角）由 inline style 給。 */
+.app-input {
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease,
+    color 160ms ease;
+}
+/* !important：基礎 border 由 inline style 給，互動態要能蓋過 inline（世界平台同規則的隱性缺口，這裡補上） */
+.app-input:hover {
+  border-color: var(--accent) !important;
+}
+.app-input:focus-visible {
+  outline: none;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-input {
+    transition: none;
+  }
+}
+
+/* number input 原生 spinner 底色無法自訂（使用者 8/17：要跟背景同色）→ 隱藏原生、
+   Sidebar 自畫透明底箭頭鈕（.year-spin），底色直接透出輸入框 surface */
+.app-input[type="number"]::-webkit-inner-spin-button,
+.app-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.app-input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.year-spin {
+  opacity: 0.55;
+  transition: opacity 120ms ease;
+}
+.year-spin:hover:not(:disabled) {
+  opacity: 1;
+}
+.year-spin:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+/* 側欄清單捲軸隨主題（比照世界平台 .app-scroll：深色模式下不要瀏覽器預設亮白捲軸） */
+.app-scroll {
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-border) transparent;
+}
+.app-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+.app-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 5px;
+}
+.app-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}

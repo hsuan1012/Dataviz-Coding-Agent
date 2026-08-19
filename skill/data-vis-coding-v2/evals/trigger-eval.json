@@ -1,0 +1,23 @@
+[
+  {"query": "我手上有一份各縣市每月用電量的 csv，想做個可以篩選年份、hover 看數字的互動圖表放在內部網站", "should_trigger": true},
+  {"query": "help me build a dashboard to visualize our app's daily active users over the last 12 months, should be interactive with filters", "should_trigger": true},
+  {"query": "有一份台灣各鄉鎮的降雨量資料（geojson + csv），幫我做一張可以互動、hover 看數值的地圖", "should_trigger": true},
+  {"query": "把這個 sales_by_region.json 做成一個網頁，滑鼠移上去要顯示每個區的業績，要能跑起來的那種", "should_trigger": true},
+  {"query": "想做一個 scatter plot 探索房價跟坪數的關係，能縮放、能依區域篩選，用 react 做", "should_trigger": true},
+  {"query": "create an interactive treemap of our S3 storage costs broken down by bucket and team", "should_trigger": true},
+  {"query": "老闆要我把問卷結果做成一個好看又能互動的視覺化頁面，資料是 google sheet 匯出的 csv", "should_trigger": true},
+  {"query": "幫我用 d3 畫一個 sankey 圖，顯示使用者在 app 裡各步驟之間的轉換流程", "should_trigger": true},
+  {"query": "這份 geojson 是各行政區界，配上我這份人口數 csv 做成 choropleth，能點能看", "should_trigger": true},
+  {"query": "我要一個能比較六都人口年齡結構的互動視覺化網站，最好是 dashboard", "should_trigger": true},
+
+  {"query": "幫我把這個 matplotlib 圖的 x 軸標籤轉成 45 度、字放大一點", "should_trigger": false},
+  {"query": "我的 react app build 失敗了，vite 一直報 esbuild 的錯，幫我看是哪裡的問題", "should_trigger": false},
+  {"query": "把這份 sales.csv 的缺失值補一補、順便算每個欄位的平均跟標準差", "should_trigger": false},
+  {"query": "解釋一下 choropleth map 跟 heatmap 差在哪，什麼時候該用哪個", "should_trigger": false},
+  {"query": "幫我把這個現有的 Chart.js 長條圖顏色換成我們公司的品牌藍 #0057b8", "should_trigger": false},
+  {"query": "用 pandas 分析這份銷售資料，告訴我哪個產品線這季成長最快、原因可能是什麼", "should_trigger": false},
+  {"query": "我想搞懂 react 的 useEffect 依賴陣列到底怎麼運作，給我幾個例子", "should_trigger": false},
+  {"query": "這張截圖裡有一個表格，幫我把裡面的數字擷取出來存成 excel", "should_trigger": false},
+  {"query": "幫我寫一個 python 排程腳本，每天早上抓台股收盤價存進 sqlite", "should_trigger": false},
+  {"query": "幫我的資料科學部落格設計一個 logo，簡約風格", "should_trigger": false}
+]

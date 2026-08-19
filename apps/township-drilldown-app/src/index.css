@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/* 散布圖框選(d3-brush)拖曳範圍(使用者要求,7/30 改虛線透明；7/31 補回淡色底):
+   虛線邊框(accent 色)+ accent 淡色半透明底——跟拖曳中的圖表內容不會被灰色蓋住，
+   同時看得出框選範圍(參考使用者提供截圖：淡綠底+綠色虛線)。 */
+.brush .selection {
+  fill: color-mix(in srgb, var(--accent) 12%, transparent);
+  stroke: var(--accent);
+  stroke-width: 1.5px;
+  stroke-dasharray: 4 3;
+  shape-rendering: crispEdges;
+}
+
+/* 使用者 8/11 回饋:左側縣市/鄉鎮導覽捲軸樣式要跟 gapminder-bubble-globe-app 一樣——
+   深色模式下瀏覽器預設捲軸是亮白色，跟深色卡片背景反差過重。改用隨主題切換的
+   --border/--text-muted token（比照 gapminder .app-scroll 原樣搬移）：
+   Firefox 用 scrollbar-color，Chrome/Edge/Safari 用 -webkit-scrollbar 系列；
+   兩者一起寫才能跨瀏覽器都套到，不寫 -webkit 版 Chrome 會退回預設白色捲軸。 */
+.app-scroll {
+  scrollbar-width: auto;
+  scrollbar-color: var(--border) transparent;
+  overflow-x: hidden;
+}
+.app-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+.app-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.app-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 8px;
+}
+.app-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-muted);
+}
+
+/* redesign-skill：互動狀態（hover / active / focus-visible）＋過渡，尊重 prefers-reduced-motion。
+   顏色用 --accent（由 App 從方向 A token 注入），維持雙主題不寫死。 */
+.tab-btn {
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.tab-btn:hover {
+  color: var(--accent);
+}
+.tab-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.ctrl-select {
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.ctrl-select:hover {
+  border-color: var(--accent);
+}
+.ctrl-select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+.icon-btn {
+  transition: transform 120ms ease, border-color 160ms ease;
+}
+.icon-btn:hover {
+  border-color: var(--accent);
+}
+.icon-btn:active {
+  transform: scale(0.97);
+}
+.icon-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 檢視切換（分區排名×地圖 ｜ 關係）：兩顆獨立膠囊按鈕 —— 未選中者 hover 轉青綠並微浮起 */
+.view-toggle { transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease; }
+.view-toggle[aria-selected="false"]:hover {
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.view-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-btn, .ctrl-select, .icon-btn, .view-toggle { transition: none; }
+  .view-toggle[aria-selected="false"]:hover { transform: none; }
+}
+
+/* taste 外殼：側欄導航互動態(v14 活潑版:hover 淡青底+滑順轉場)。顏色沿用 --accent 注入。 */
+.taste-nav {
+  transition: all 200ms ease;
+}
+.taste-nav:hover {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent) !important;
+}
+.taste-nav:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.taste-select { transition: border-color 160ms ease, box-shadow 160ms ease; }
+.taste-select:hover { border-color: var(--accent); }
+.taste-select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+/* 合併單頁兩層版(7/24 老師建議③+使用者 wireframe v2):
+   上層=散布圖7/12×地圖5/12、下層=北/中/南/東離島四排名卡橫排(無欄內捲軸,一屏完整呈現)。
+   版面容器用 Tailwind grid;元件內部 inline style 覆寫時須 !important。 */
+/* v11 青綠膠囊互動語言(使用者指定 teal-50/100/200 對應):清除鈕+年份鈕未選中態。
+   用 --accent token + color-mix 實作=雙主題不寫死;選中態維持實色 accent 高對比。
+   inline style 需 !important 蓋。 */
+.year-like,
+.year-tab[aria-selected="false"],
+.scatter-select-toggle[aria-pressed="false"] {
+  background: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+  color: var(--accent) !important;
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent) !important;
+  transition: all 150ms ease-in-out !important;
+}
+.year-like:hover,
+.year-tab[aria-selected="false"]:hover,
+.scatter-select-toggle[aria-pressed="false"]:hover {
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent) !important;
+}
+.year-like:active,
+.year-tab:active,
+.scatter-select-toggle:active {
+  background: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+  transform: scale(0.95);
+}
+.year-like:focus-visible,
+.year-tab:focus-visible,
+.scatter-select-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .year-like, .year-tab, .scatter-select-toggle { transition: none !important; }
+  .year-like:active, .year-tab:active, .scatter-select-toggle:active { transform: none; }
+}
+
+.rank-row .rank-grid-nation { grid-template-columns: repeat(4, 1fr) !important; }
+.rank-row .rank-box { box-shadow: 0 1px 2px rgb(0 0 0 / 0.06); border-radius: 14px; padding: 7px 12px 5px !important; }
+/* v13:下鑽後底列兩卡等高;排名卡內容在較高卡內垂直置中(名次列表上下留白平衡) */
+.rank-row .rank-box { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; }
+.rank-row .rank-box > div:last-child { margin-top: auto; margin-bottom: auto; }
+.rank-row .rank-panel-enter { height: 100%; }
+.info-slot .info-panel { margin-top: 0 !important; }
+
+/* 高度斷點(7/28 筆電矮視窗散布圖被壓成縮圖):視窗高 ≤860px 時解鎖整頁直向捲軸——
+   root/main 改 auto 高、charts-row 給「定高」(非 min-height 地板:散布圖 viewBox=量測定高、
+   無內在高度,連續地板會進「量測→長高」回饋,連桌機鎖屏都會破;同 ≤1100 堆疊的定高套路)。
+   >860px(桌機 1080 等)完全不受影響=老師驗收的一屏鎖定原樣。 */
+@media (min-width: 1101px) and (max-height: 860px) {
+  .taste-root { height: auto !important; min-height: 100dvh; overflow: visible !important; }
+  .taste-aside { height: auto !important; align-self: stretch; }
+  .merged-main { height: auto !important; overflow: visible !important; }
+  .charts-row { flex: none !important; height: 640px; min-height: 0; }
+  /* 預留捲軸溝:防臨界高度「捲軸現↔隱」寬度抖動震盪(7/24 教訓) */
+  html { scrollbar-gutter: stable; }
+}
+
+/* RWD 斷點(7/24 老師半屏回饋):≤1100 上層改直向堆疊(散布圖→地圖),
+   排名卡 2×2、資訊面板放滿寬;頁面本就允許直向捲動,堆疊後自然變長頁。 */
+@media (max-width: 1100px) {
+  /* 側欄收頂列+整頁解鎖直向捲動 */
+  .taste-root { flex-direction: column !important; height: auto !important; overflow: visible !important; }
+  .taste-aside {
+    width: 100% !important; height: auto !important;
+    flex-direction: row !important; align-items: center !important; flex-wrap: wrap;
+    gap: 14px !important; padding: 12px 16px !important;
+    border-right: none !important;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  }
+  .taste-aside nav { flex-direction: row !important; flex-wrap: wrap; gap: 6px !important; }
+  .taste-nav { border-left: none !important; border-radius: 8px !important; padding: 6px 12px !important; }
+  .taste-aside > div:last-child { margin-top: 0 !important; margin-left: auto; flex-direction: row !important; align-items: center !important; }
+  .merged-main { height: auto !important; overflow: visible !important; }
+  .charts-row { display: flex; flex-direction: column; align-items: center; height: auto !important; flex: none !important; }
+  .charts-row > * { width: 100%; max-width: 780px; }
+  .rank-row { display: flex; flex-direction: column; }
+  .rank-row .info-slot { width: 100% !important; }
+  .rank-row .rank-grid-nation { grid-template-columns: 1fr 1fr !important; }
+  /* 堆疊時高度鏈斷開:散布圖 svg 給固定高(h-full 的父層已無定高) */
+  .chart-scatter { flex: none !important; }
+  .chart-scatter svg[width="100%"] { height: 420px !important; }
+  .chart-map { min-height: 480px; }
+}
+@media (max-width: 767px) {
+  .rank-row .rank-grid-nation { grid-template-columns: 1fr !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .taste-nav, .taste-select { transition: none; }
+}
+
+/* 排名長條圖：下鑽切層進場動畫。整個面板淡入上浮（外層無 transform 衝突）；
+   長條「從 0 長出」由 React grown 狀態驅動既有的 width transition（見 RankList），
+   並以 index 微階梯（transitionDelay）由上而下依序長出。列的 translateY 保留給名次定位。 */
+@keyframes rank-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rank-panel-enter { animation: rank-rise .32s cubic-bezier(.4, 0, .2, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rank-panel-enter { animation: none; }
+}

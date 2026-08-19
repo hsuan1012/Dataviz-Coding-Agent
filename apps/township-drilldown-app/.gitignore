@@ -1,0 +1,13 @@
+node_modules
+dist
+*.db
+__pycache__
+.venv
+.pytest_cache
+.vercel
+.DS_Store
+*.local
+
+# 開發過程存證截圖與舊 app 殘留的進度回報（app 執行不需要，保留在本機即可）
+docs/superpowers/artifacts/
+進度回報_20260709_鄉鎮分頁圖集.md

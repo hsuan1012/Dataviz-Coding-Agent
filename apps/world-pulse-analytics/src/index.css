@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+/* 方向 A 樣式字典（見 township-drilldown-app/src/lib/styleDictionary.js）
+   淺色主題基準：冷石板中性 + 青綠強調。 */
+:root {
+  --accent: #0d9488;
+  --accent-hover: #0f766e;
+  --accent-soft: #e6f4f1;
+  /* accent 底色上要放的文字色——淺色模式 accent 夠深,白字對比夠;深色模式 accent
+     (#2dd4bf)是亮色,白字對比會不足,要用深字(對齊 township styleDictionary.js
+     themes.dark.accentFg)。 */
+  --accent-fg: #ffffff;
+  --color-text: #0f1b2d;
+  --color-text-muted: #55657a;
+  --color-border: #e2e8f0;
+  --color-bg: #f6f8fa;
+  --color-surface: #ffffff;
+  --font-sans: "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif;
+  --font-serif: "Noto Serif TC", "Songti TC", serif;
+  /* 原生控件(捲軸/清除鈕等)隨主題渲染,避免深色下冒亮白元件(比照國小圖集 8/17) */
+  color-scheme: light;
+}
+
+/* 老師 8/3 回饋:深色模式——數值直接取自 township-drilldown-app 的
+   styleDictionary.js themes.dark(同一套方向 A 雙主題 token),由 ThemeContext
+   切換 document.documentElement 的 data-theme 屬性觸發。 */
+:root[data-theme="dark"] {
+  --accent: #2dd4bf;
+  --accent-hover: #14b8a6;
+  --accent-soft: #0f2e2a;
+  --accent-fg: #04231f;
+  --color-text: #e6edf3;
+  --color-text-muted: #9fb0c0;
+  --color-border: #26333f;
+  --color-bg: #0e1620;
+  --color-surface: #16212e;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* 互動狀態（hover / focus-visible）＋過渡，尊重 prefers-reduced-motion。 */
+.app-input,
+.app-btn {
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease,
+    color 160ms ease;
+}
+
+.app-input:hover {
+  border-color: var(--accent);
+}
+
+/* 年份 number input 的原生 spinner 底色不可自訂、深色模式冒亮白色塊(使用者 8/17,
+   比照國小圖集):隱藏原生、CountryChecklist 自畫透明底 ±1 箭頭(.year-spin),
+   底色直接透出輸入框 surface,兩主題自動一致 */
+.app-input[type="number"]::-webkit-inner-spin-button,
+.app-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.app-input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.year-spin {
+  opacity: 0.55;
+  transition: opacity 120ms ease;
+}
+.year-spin:hover:not(:disabled) {
+  opacity: 1;
+}
+.year-spin:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+.app-input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 24%, transparent);
+}
+
+.app-btn:hover {
+  background-color: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+.app-btn:active {
+  transform: scale(0.97);
+}
+.app-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 實色主按鈕（播放/暫停）：hover 加深、不轉為淺底，維持對比 */
+.app-btn-primary {
+  transition: background-color 160ms ease, transform 120ms ease;
+}
+.app-btn-primary:hover {
+  background-color: var(--accent-hover) !important;
+}
+.app-btn-primary:active {
+  transform: scale(0.97);
+}
+.app-btn-primary:focus-visible {
+  outline: 2px solid var(--accent-hover);
+  outline-offset: 2px;
+}
+
+.app-row-hover:hover {
+  background-color: var(--accent-soft);
+}
+
+input[type="checkbox"],
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+/* 使用者 8/4 回饋:年份滑桿的軌道是瀏覽器原生灰(不吃 --color-border,accent-color
+   只染得到滑塊跟已播放段),跟左側清單捲軸(下面 .app-scroll,已改用 --color-border)
+   顏色對不上。這裡明講軌道背景,兩者才真正共用同一個 token、保證同色。
+   8/4 二次回饋:改成純色軌道後,原生「已播放段變 accent 色」的效果跟著消失,滑塊圓點
+   也偏離軌道中線——因為一旦自訂 runnable-track,瀏覽器不再套用它原本幫滑塊算好的
+   置中位移。兩者都要自己接手:軌道改漸層(進度來自 TimeControls.tsx 寫入的
+   --range-progress CSS 變數,inline style 到不了偽元素、但自訂屬性會沿繼承鏈傳進來),
+   滑塊用 -webkit-appearance:none 自畫圓形,margin-top 手動算「(軌道高-滑塊高)/2」置中。 */
+.year-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.year-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--accent) var(--range-progress, 0%),
+    var(--color-border) var(--range-progress, 0%)
+  );
+}
+.year-range::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+.year-range::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.year-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+}
+.year-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-input,
+  .app-btn,
+  .app-btn-primary {
+    transition: none;
+  }
+  .app-btn:active,
+  .app-btn-primary:active {
+    transform: none;
+  }
+}
+
+/* 青綠膠囊互動語言(對齊鄉鎮圖集 v11):未選中態=淡綠底+accent 字,選中態=實色 accent。
+   用 --accent token + color-mix 實作;inline style 需 !important 蓋。 */
+.year-play[aria-pressed="false"],
+.scatter-select-toggle[aria-pressed="false"] {
+  background: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+  color: var(--accent) !important;
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent) !important;
+  transition: all 150ms ease-in-out !important;
+}
+.year-play[aria-pressed="false"]:hover,
+.scatter-select-toggle[aria-pressed="false"]:hover {
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent) !important;
+}
+.year-play:active,
+.scatter-select-toggle:active {
+  background: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+  transform: scale(0.95);
+}
+.year-play:focus-visible,
+.scatter-select-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* 使用者 8/4 回饋:左側國家清單捲軸在深色模式下用瀏覽器預設(亮白色),跟深色卡片背景
+   反差過重、太搶眼。改用隨主題切換的 --color-border/--color-text-muted token——
+   Firefox 用 scrollbar-color,Chrome/Edge/Safari 用 -webkit-scrollbar 系列;
+   兩者一起寫才能跨瀏覽器都套到,不寫 -webkit 版 Chrome 會退回預設白色捲軸。 */
+.app-scroll {
+  scrollbar-width: auto;
+  scrollbar-color: var(--color-border) transparent;
+  /* 使用者 8/4 回饋:清單不該出現左右捲軸——自訂細滾軸是純視覺層的
+     -webkit-scrollbar 覆寫,瀏覽器版面計算保留的軌道寬度有時仍照系統預設(通常
+     17px)算,兩者差額讓內容剛好多出一點寬度,觸發不必要的水平捲軸。清單項目本來
+     就不需要左右捲動,直接關掉。 */
+  overflow-x: hidden;
+}
+.app-scroll::-webkit-scrollbar {
+  /* 使用者 8/4 回饋:改成不裁水平捲軸後改用 8px,使用者又覺得太細——
+     加粗到 12px,同時 scrollbar-width 從 thin 改 auto(Firefox 沒有自訂寬度可調,
+     只有 auto/thin/none 三檔,auto 是比較粗的預設檔)。 */
+  width: 12px;
+}
+.app-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.app-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 8px;
+}
+.app-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text-muted);
+}
+
+/* 老師 8/3 回饋:矮視窗(筆電等)打開網頁畫面被壓縮——比照 township-drilldown-app 的
+   高度斷點解法(index.css @media max-height:860px):預設維持 h-screen 鎖屏(桌機零變化),
+   矮視窗改 auto 高+charts-row 定高,讓整頁能捲動,不再把三欄內容硬壓扁。
+   實測(Playwright, 1920×800):不加斷點時 charts-row 已被壓到 591px 仍可視,但泡泡圖/
+   地球儀擠壓明顯;640px 定高後泡泡圖卡片量到約 430px,可讀。 */
+@media (max-height: 860px) {
+  .app-root { height: auto !important; min-height: 100dvh; overflow: visible !important; }
+  .charts-row { flex: none !important; height: 640px; min-height: 0; }
+  html { scrollbar-gutter: stable; }
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "data-vis-coding",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我這裡有一份台灣各鄉鎮市區的人口資料（CSV，欄位有縣市、鄉鎮市區、人口數）。幫我做一個互動式的視覺化 app，可以看各鄉鎮的人口分布。",
+      "expected_output": "一個 React + Vite 專案：偵測到地理欄位（鄉鎮市區）+ 數值（人口數）→ 選 choropleth 地圖（D3.js），套用 styleDictionary 的 sequentialScale，行政區名正確對應 GeoJSON，hover 顯示人口數；並跑過程式層與資料層驗證。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "這是我們產品過去 12 個月的月營收（JSON，每筆有 month 和 revenue）。做個互動圖表讓我看趨勢，hover 要能看到每月數字。",
+      "expected_output": "React + Chart.js 折線圖（time + number → line），hover tooltip 顯示每月營收，所有顏色/字型來自 styleDictionary，不寫死；過程式層與資料層驗證。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "幫我把這份各縣市各年齡層的人口做成一個 dashboard，我想同時比較縣市之間、也想看年齡結構。",
+      "expected_output": "先釐清關鍵訊息與版面（人機協作），再選多圖連動的 dashboard（如 bar 比較縣市 + 另一圖看年齡結構），統一套 styleDictionary，互動連動，並多層驗證。應主動就美學/版面向使用者確認。",
+      "files": []
+    }
+  ]
+}

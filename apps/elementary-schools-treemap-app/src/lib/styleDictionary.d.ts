@@ -1,0 +1,40 @@
+export const colors: Record<string, string>;
+export const accent: Record<string, string>;
+export const categoricalPalette: string[];
+export const sequentialScale: { from: string; to: string };
+export const quantileScale: string[];
+export const labelContrast: { labelOnLight: string; labelOnDark: string; darkFrom: number };
+export const flowColors: { increase: string; decrease: string; base: string };
+export const tooltip: { bg: string; fg: string };
+export const typography: {
+  fontSerif: string; fontFamily: string; fontMono: string;
+  sizes: Record<string, number>; weights: Record<string, number>;
+};
+export const spacing: Record<string, number>;
+export const components: {
+  panel: { radius: number };
+  button: { radius: number };
+  control: { radius: number };
+  pill: { radius: number };
+  tooltip: { radius: number; padding: string };
+  bar: { radius: number };
+  swatch: { radius: number };
+};
+export const shadows: Record<string, string>;
+export const themes: { light: Record<string, any>; dark: Record<string, any> };
+declare const styleDictionary: {
+  colors: typeof colors;
+  accent: typeof accent;
+  categoricalPalette: typeof categoricalPalette;
+  sequentialScale: typeof sequentialScale;
+  quantileScale: typeof quantileScale;
+  labelContrast: typeof labelContrast;
+  flowColors: typeof flowColors;
+  tooltip: typeof tooltip;
+  typography: typeof typography;
+  spacing: typeof spacing;
+  components: typeof components;
+  shadows: typeof shadows;
+  themes: typeof themes;
+};
+export default styleDictionary;

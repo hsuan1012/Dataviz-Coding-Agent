@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* 青綠膠囊互動語言(比照臺灣國民小學校別圖集/世界發展數據分析平台):
+   未啟用態=淡綠底+accent 字,hover 加深;啟用態=實色 accent(inline style 給);
+   :active 縮放回饋、:focus-visible 無障礙 focus ring。
+   --accent / --accent-fg 由 App 根節點依當前主題注入。 */
+.pill-toggle[aria-pressed="false"] {
+  background: color-mix(in srgb, var(--accent) 10%, transparent) !important;
+  color: var(--accent) !important;
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent) !important;
+  transition: all 150ms ease-in-out !important;
+}
+.pill-toggle[aria-pressed="false"]:hover {
+  background: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent) !important;
+}
+.pill-toggle:active {
+  background: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+  transform: scale(0.95);
+}
+.pill-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 主圖列:寬螢幕單行(單行 flex 行高才會被壓到容器高度=一屏放滿);
+   窄螢幕(<1100px)才換行堆疊、頁面自然出捲軸 */
+.main-row {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 420px;
+  flex-wrap: nowrap;
+}
+/* 右欄圖表列(地圖+ridgeline):寬螢幕單行被壓到容器高,窄螢幕換行 */
+.charts-row {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 420px;
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 1099px) {
+  .main-row {
+    flex-wrap: wrap;
+  }
+  .main-row > div {
+    flex-basis: 100% !important;
+  }
+  .charts-row {
+    flex-wrap: wrap;
+  }
+  .charts-row > div {
+    min-height: 420px;
+    flex-basis: 100% !important;
+  }
+  /* 縣市側欄:窄螢幕改滿寬、限高改捲動(比照國小圖集 stacked 模式) */
+  .county-rail {
+    width: 100% !important;
+    max-height: 280px;
+  }
+}
+
+/* 主題化細捲軸(側欄縣市清單) */
+.app-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+/* 輸入框互動態(比照國小圖集 .app-input:hover 邊框加深、focus accent ring) */
+.app-input:hover {
+  border-color: var(--color-border) !important;
+  filter: brightness(1.08);
+}
+.app-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+/* 年份滑桿(比照 gapminder .year-range):已播段 accent 漸層軌道(--range-progress 由
+   inline style 傳入,自訂屬性可進偽元素)、自畫圓形滑塊 */
+.year-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--accent) var(--range-progress, 0%),
+    var(--color-border) var(--range-progress, 0%)
+  );
+  cursor: pointer;
+  outline-offset: 3px;
+}
+.year-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+}
+.year-range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+}
+.year-range:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+/* 隱藏原生 number spinner(自畫箭頭;家族 8/17 深色模式教訓) */
+.app-input[type='number']::-webkit-outer-spin-button,
+.app-input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.app-input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}

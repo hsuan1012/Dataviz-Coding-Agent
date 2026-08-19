@@ -1,0 +1,9 @@
+node_modules
+dist
+.claude
+.superpowers
+.vercel
+test-results
+*.local
+.DS_Store
+.env*

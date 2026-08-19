@@ -1,0 +1,359 @@
+<!-- 借鑑自老師 dataviz-webapp skill（2026-07-09）的 layout-picker-template.html，改用方向 A 雙主題配色 -->
+<!--
+  TEMPLATE — adapt before publishing as an Artifact:
+  1. Replace {{PROJECT_NAME}} in the <title>, <h1>, and lede.
+  2. CURATE: keep only the 3-4 layout cards that fit the user's data; delete the rest
+     (each card is a self-contained <button class="card">...</button> block, A through I).
+  3. Rename mockup labels/numbers to the user's actual entities and data shape where easy.
+  4. See references/layout-options.md for which layouts fit which data shapes.
+-->
+<meta charset="UTF-8" />
+<title>選版面 — {{PROJECT_NAME}}</title>
+<style>
+  :root {
+    --bg:          #f4f6f7;
+    --surface:     #ffffff;
+    --text:        #1b2a2e;
+    --text-2:      #4c5c60;
+    --muted:       #7c8b8e;
+    --hairline:    #dde3e3;
+    --accent:      #0f8a7e;
+    --accent-soft: #d9efec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:          #0e1719;
+      --surface:     #152227;
+      --text:        #e8eef0;
+      --text-2:      #b7c4c6;
+      --muted:       #7c8b8e;
+      --hairline:    #263236;
+      --accent:      #2bb5a5;
+      --accent-soft: #16302c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:          #0e1719;
+    --surface:     #152227;
+    --text:        #e8eef0;
+    --text-2:      #b7c4c6;
+    --muted:       #7c8b8e;
+    --hairline:    #263236;
+    --accent:      #2bb5a5;
+    --accent-soft: #16302c;
+  }
+  :root[data-theme="light"] {
+    --bg:          #f4f6f7;
+    --surface:     #ffffff;
+    --text:        #1b2a2e;
+    --text-2:      #4c5c60;
+    --muted:       #7c8b8e;
+    --hairline:    #dde3e3;
+    --accent:      #0f8a7e;
+    --accent-soft: #d9efec;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    padding: 48px 24px 64px;
+  }
+  .wrap { max-width: 1360px; margin: 0 auto; }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 650;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .lede {
+    color: var(--text-2);
+    max-width: 62ch;
+    margin: 0 0 36px;
+    font-size: 15px;
+  }
+  .lede strong { color: var(--text); font-weight: 600; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1080px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px)  { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 14px 14px 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .card.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } }
+
+  /* ---------- mini 版面縮圖（CSS box 線框，不用截圖風白畫布，隨主題深淺切換） ---------- */
+  .thumb {
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: var(--bg);
+    aspect-ratio: 16 / 9.5;
+    display: flex;
+    padding: 8px;
+    gap: 8px;
+    box-sizing: border-box;
+  }
+  .blk { background: var(--hairline); border-radius: 3px; }
+  .blk.accent { background: var(--accent-soft); border: 1px solid var(--accent); }
+  .blk.solid  { background: var(--accent); }
+
+  .rail { width: 20%; display: flex; flex-direction: column; gap: 5px; }
+  .rail .blk { height: 7px; }
+  .rail .blk:first-child { height: 10px; width: 70%; background: var(--muted); opacity: .5; }
+
+  .col { flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .row-flex { display: flex; gap: 6px; flex: 1; min-height: 0; }
+  .title-blk { height: 8px; width: 34%; background: var(--muted); opacity: .6; border-radius: 3px; }
+
+  .tiles { display: flex; gap: 5px; }
+  .tiles .blk { flex: 1; height: 16px; }
+
+  .grid2x2 { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; min-height: 0; }
+  .grid3x3 { flex: 1; display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: repeat(3,1fr); gap: 5px; min-height: 0; }
+  .hero { flex: 1.6; }
+  .support { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+
+  .tabs { display: flex; gap: 4px; }
+  .tab { height: 10px; width: 18%; border-radius: 3px 3px 0 0; background: var(--hairline); }
+  .tab.on { background: var(--accent-soft); border: 1px solid var(--accent); border-bottom: none; }
+
+  .split { flex: 1; display: flex; gap: 6px; min-height: 0; }
+  .half { flex: 1; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+  .half .blk { flex: 1; }
+
+  .list-rows { display: flex; flex-direction: column; gap: 4px; flex: 1; min-height: 0; }
+  .list-rows .blk { height: 9px; flex: none; }
+  .list-rows .blk.on { background: var(--accent-soft); border: 1px solid var(--accent); }
+
+  .lines { display: flex; flex-direction: column; gap: 3px; }
+  .lines .blk { height: 4px; }
+  .lines .blk:last-child { width: 60%; }
+
+  /* ---------- 卡片文字 ---------- */
+  .head { display: flex; align-items: baseline; gap: 10px; }
+  .tag {
+    font-size: 12px; font-weight: 700;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 1px 7px;
+  }
+  .card.selected .tag { background: var(--accent); color: var(--surface); }
+  .name { font-weight: 650; font-size: 15px; }
+  .desc { color: var(--text-2); font-size: 13.5px; margin: 0; }
+
+  .statusbar {
+    margin-top: 32px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13.5px;
+    color: var(--text-2);
+  }
+  #pick { font-weight: 600; color: var(--text); }
+  .note { color: var(--muted); max-width: 52ch; }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">版面選項 · 開始客製前先選</p>
+  <h1>為「{{PROJECT_NAME}}」挑一個版面</h1>
+  <p class="lede">以下是幾種候選版面，用示意方塊按比例呈現結構。
+    點一張卡片會標記你的選擇，接著<strong>請在對話中回覆你選的版面</strong>
+    （這個頁面本身不會把選擇傳回來）；也歡迎直接微調，例如
+    <strong>「B，但把篩選器放最上面」</strong>，我會照著這個結構開始搭建。</p>
+
+  <div class="grid">
+
+    <!-- A: 側欄 + 圖表格 -->
+    <button class="card" data-name="A — 側欄 + 圖表格">
+      <span class="thumb">
+        <span class="rail"><span class="blk"></span><span class="blk"></span><span class="blk"></span><span class="blk"></span></span>
+        <span class="col">
+          <span class="title-blk"></span>
+          <span class="grid2x2">
+            <span class="blk accent"></span><span class="blk"></span>
+            <span class="blk"></span><span class="blk accent"></span>
+          </span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">A</span><span class="name">側欄 + 圖表格</span></span>
+      <p class="desc">左側導覽列，右側 2×2 等重圖表格；適合 4 種以上同等重要的指標、多頁應用。</p>
+    </button>
+
+    <!-- B: KPI 條 + 主圖 -->
+    <button class="card" data-name="B — KPI 條 + 主圖">
+      <span class="thumb">
+        <span class="col">
+          <span class="title-blk"></span>
+          <span class="tiles"><span class="blk accent"></span><span class="blk"></span><span class="blk"></span><span class="blk"></span></span>
+          <span class="row-flex">
+            <span class="blk hero accent"></span>
+            <span class="support"><span class="blk"></span><span class="blk"></span></span>
+          </span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">B</span><span class="name">KPI 條 + 主圖</span></span>
+      <p class="desc">上方一排統計卡先給結論，下方一張主要趨勢圖撐場；適合有明確主指標＋輔助細節的場景。</p>
+    </button>
+
+    <!-- C: 控制面板 + 焦點圖 -->
+    <button class="card" data-name="C — 控制面板 + 焦點圖">
+      <span class="thumb">
+        <span class="rail" style="width:26%">
+          <span class="blk"></span><span class="blk" style="height:12px"></span>
+          <span class="blk" style="height:12px"></span><span class="blk accent" style="height:12px"></span>
+        </span>
+        <span class="col">
+          <span class="title-blk"></span>
+          <span class="blk accent" style="flex:1"></span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">C</span><span class="name">控制面板 + 焦點圖</span></span>
+      <p class="desc">篩選器與選項全放左側面板，右側一張大圖獨佔版面；適合單一張可深度互動、控制項多的圖表。</p>
+    </button>
+
+    <!-- D: 敘事捲動報告 -->
+    <button class="card" data-name="D — 敘事捲動報告">
+      <span class="thumb">
+        <span class="col" style="align-items:center">
+          <span class="title-blk"></span>
+          <span class="lines" style="width:78%"><span class="blk"></span><span class="blk"></span></span>
+          <span class="blk accent" style="width:78%; flex:1"></span>
+          <span class="lines" style="width:78%"><span class="blk"></span></span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">D</span><span class="name">敘事捲動報告</span></span>
+      <p class="desc">單欄敘事，文字與滿版圖表交錯，由上往下讀如一篇文章；可升級成 scrollytelling（固定圖表隨捲動變化）。適合對外說明發現，非監控工具。</p>
+    </button>
+
+    <!-- E: 分頁視圖 -->
+    <button class="card" data-name="E — 分頁視圖">
+      <span class="thumb">
+        <span class="col">
+          <span class="title-blk"></span>
+          <span class="tabs"><span class="tab on"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span></span>
+          <span class="blk accent" style="flex:1"></span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">E</span><span class="name">分頁視圖</span></span>
+      <p class="desc">一個主題一個分頁，各自獨佔整個畫布，圖表之間不搶版面；適合同一份資料下好幾個獨立問題。</p>
+    </button>
+
+    <!-- F: 分割比較 -->
+    <button class="card" data-name="F — 分割比較">
+      <span class="thumb">
+        <span class="col">
+          <span class="title-blk"></span>
+          <span class="split">
+            <span class="half"><span class="blk accent"></span><span class="blk" style="height:14px; flex:none"></span></span>
+            <span class="half"><span class="blk accent"></span><span class="blk" style="height:14px; flex:none"></span></span>
+          </span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">F</span><span class="name">分割比較</span></span>
+      <p class="desc">左右兩個對稱面板、座標軸同步，各自選一個對象直接比對；適合「A 對 B」的明確比較問題（區域、年份、情境）。</p>
+    </button>
+
+    <!-- G: 主從清單 -->
+    <button class="card" data-name="G — 主從清單">
+      <span class="thumb">
+        <span class="rail" style="width:30%">
+          <span class="blk"></span>
+          <span class="list-rows">
+            <span class="blk"></span><span class="blk on"></span><span class="blk"></span><span class="blk"></span><span class="blk"></span>
+          </span>
+        </span>
+        <span class="col">
+          <span class="title-blk"></span>
+          <span class="tiles"><span class="blk accent"></span><span class="blk"></span></span>
+          <span class="blk accent" style="flex:1"></span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">G</span><span class="name">主從清單</span></span>
+      <p class="desc">左側可選清單／表格，右側顯示選中項目的統計與圖表；適合逐一檢視大量同類實體（鄉鎮、產品、樣本），清單要資訊密集（搜尋框、迷你走勢圖）。</p>
+    </button>
+
+    <!-- H: 小倍數牆 -->
+    <button class="card" data-name="H — 小倍數牆">
+      <span class="thumb">
+        <span class="col">
+          <span class="title-blk"></span>
+          <span class="grid3x3">
+            <span class="blk accent"></span><span class="blk"></span><span class="blk"></span>
+            <span class="blk"></span><span class="blk accent"></span><span class="blk"></span>
+            <span class="blk"></span><span class="blk"></span><span class="blk accent"></span>
+          </span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">H</span><span class="name">小倍數牆</span></span>
+      <p class="desc">同一張圖依類別重複排列、共用座標軸，用掃視就能抓出型態與離群值；適合在多個群組間比較同一個指標，每格細節有限。</p>
+    </button>
+
+    <!-- I: 地圖 + 明細欄 -->
+    <button class="card" data-name="I — 地圖 + 明細欄">
+      <span class="thumb">
+        <span class="row-flex">
+          <span class="blk accent hero"></span>
+          <span class="support">
+            <span class="title-blk"></span>
+            <span class="blk" style="height:14px"></span>
+            <span class="blk" style="flex:1"></span>
+          </span>
+        </span>
+      </span>
+      <span class="head"><span class="tag">I</span><span class="name">地圖 + 明細欄</span></span>
+      <p class="desc">大幅地圖（或其他空間視圖）為主體，點選區域後側欄顯示該區的數字與趨勢；適合本質上是地理資料的題目，若地理不是重點則版面浪費。</p>
+    </button>
+
+  </div>
+
+  <div class="statusbar">
+    <span id="pick">尚未選擇 — 點一張版面卡片。</span>
+    <span class="note">點選只會在這個頁面上標記你的選擇（視覺高亮），請務必回到對話中告訴我你選了哪個版面（可附帶微調要求），我才會據此開始搭建。</span>
+  </div>
+</div>
+
+<script>
+  // 僅視覺標記選中的卡片；此頁面無法把選擇傳回聊天，
+  // 使用者仍需在 chat 中回覆自己選的版面代號（例如 "B" 或 "B，但把篩選器放最上面"）。
+  const cards = document.querySelectorAll('.card');
+  const pick = document.getElementById('pick');
+  cards.forEach(c => c.addEventListener('click', () => {
+    cards.forEach(x => x.classList.remove('selected'));
+    c.classList.add('selected');
+    pick.textContent = '已選：' + c.dataset.name + ' — 請在對話中告訴我，我就開始搭建。';
+  }));
+</script>
