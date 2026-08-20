@@ -1,11 +1,10 @@
 # Dataviz Coding Agent
 
-**用一個 Claude Skill，把「一份資料＋一個需求」變成可上線的互動式資料視覺化網站——這是那個 Skill，以及它產出的四個作品。**
+透過建構專屬之 Claude Skill，本專案提出一套將「原始資料與應用需求」自動轉化為「互動式資料視覺化應用程式」之標準化工作流程。本彙整報告收錄該自動化框架（Skill）之設計邏輯，以及運用此框架完成部署之四項視覺化專案成果。
 
-中央研究院統計科學研究所 2026 年暑期實習成果彙整　·　指導老師：顏佐榕老師　·　實作：陳歆璇（東吳大學資料科學系）
-
-> This repository packages a self-authored [Claude Skill](https://claude.com/claude-code) — `data-vis-coding-v2`, a reusable coding-agent workflow for building interactive data-visualization web apps — together with the four production apps it was used to build. Each app was iterated dozens of times against real government open data with a human reviewer in the loop; every lesson learned was written back into the skill, so each subsequent app took less time than the last. Per-app details are in each `apps/*/README.md`; this top-level README tells the overall research story.
-
+- **中央研究院統計科學研究所 2026 年暑期實習成果彙整**
+- **指導教授：** 顏佐榕 老師
+- **研究實作：** 陳歆璇
 ---
 
 ## 快速連結
