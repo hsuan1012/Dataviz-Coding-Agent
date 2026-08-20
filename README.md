@@ -54,7 +54,7 @@
 
 **標準化開發：** 規格釐清 ➔ 資料處理 ➔ 圖表選型 ➔ 元件實作 ➔ 多層次驗證
 
-## 技術棧
+## 技術
 *   **前端架構：** React 18、TypeScript (Vite)、Tailwind CSS
 *   **視覺化引擎：** D3 v7（四專案共用）、three.js／globe.gl（世界發展數據分析平台之 3D 地球儀專屬）
 *   **資料工程（ETL）：** Python (pandas/pytest)、Node.js
