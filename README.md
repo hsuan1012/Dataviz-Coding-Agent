@@ -5,19 +5,16 @@
 - **中央研究院統計科學研究所 2026 年暑期實習成果彙整**
 - **指導教授：** 顏佐榕 老師
 - **研究實作：** 陳歆璇
----
 
 ## 快速連結
 
 | | |
 |---|---|
-| 🧭 臺灣鄉鎮統計圖集 | <https://township-drilldown-app.vercel.app> |
+| 📍 臺灣鄉鎮統計圖集 | <https://township-drilldown-app.vercel.app> |
 | 🌍 世界發展數據分析平台 | <https://world-pulse-analytics.vercel.app> |
 | 🏫 臺灣國民小學校別圖集 | <https://elementary-schools-treemap-app.vercel.app> |
 | 🌡️ 臺灣月均溫網格圖集 | <https://temperature-grid-app.vercel.app> |
 | 🤖 Skill 原始碼 | [`skill/data-vis-coding-v2/`](skill/data-vis-coding-v2/) |
-
----
 
 ## 這個 repo 是什麼
 
