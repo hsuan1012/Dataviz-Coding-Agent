@@ -21,6 +21,9 @@
 <a href="https://world-pulse-analytics.vercel.app">world-pulse-analytics.vercel.app</a>
 </td>
 </tr>
+</table>
+
+<table>
 <tr>
 <td width="50%" align="center">
 <a href="https://elementary-schools-treemap-app.vercel.app"><img src="docs/screenshots/elementary-schools-treemap-app.png" alt="臺灣國民小學校別圖集"></a><br>
@@ -67,6 +70,9 @@
 <td width="50%"><img src="docs/screenshots/township-drilldown-app.png" alt="臺灣鄉鎮統計圖集"><br><sub>臺灣鄉鎮統計圖集：地圖＋散布圖＋排名合併單頁</sub></td>
 <td width="50%"><img src="docs/screenshots/world-pulse-analytics.png" alt="世界發展數據分析平台"><br><sub>世界發展數據分析平台：泡泡圖＋3D 面量地球儀</sub></td>
 </tr>
+</table>
+
+<table>
 <tr>
 <td width="50%"><img src="docs/screenshots/elementary-schools-treemap-app.png" alt="臺灣國民小學校別圖集"><br><sub>國小校別圖集：三層 zoomable treemap</sub></td>
 <td width="50%"><img src="docs/screenshots/temperature-grid-app.png" alt="臺灣月均溫網格圖集"><br><sub>月均溫網格圖集：heatmap 地圖＋ridgeline</sub></td>
