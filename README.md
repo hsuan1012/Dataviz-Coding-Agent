@@ -11,18 +11,18 @@
 <table>
 <tr>
 <td width="50%" align="center">
-📍 <b>臺灣鄉鎮統計圖集</b>
-<hr>
+<b>📍 臺灣鄉鎮統計圖集</b>
+<br><br>
 <a href="https://township-drilldown-app.vercel.app"><img src="docs/screenshots/township-drilldown-app.png" alt="臺灣鄉鎮統計圖集"></a>
-<hr>
-<a href="https://township-drilldown-app.vercel.app">township-drilldown-app.vercel.app</a>
+<br><br>
+<a href="https://township-drilldown-app.vercel.app"><img src="https://img.shields.io/badge/township--drilldown--app.vercel.app-0d9488" alt="township-drilldown-app.vercel.app"></a>
 </td>
 <td width="50%" align="center">
-🌍 <b>世界發展數據分析平台</b>
-<hr>
+<b>🌍 世界發展數據分析平台</b>
+<br><br>
 <a href="https://world-pulse-analytics.vercel.app"><img src="docs/screenshots/world-pulse-analytics.png" alt="世界發展數據分析平台"></a>
-<hr>
-<a href="https://world-pulse-analytics.vercel.app">world-pulse-analytics.vercel.app</a>
+<br><br>
+<a href="https://world-pulse-analytics.vercel.app"><img src="https://img.shields.io/badge/world--pulse--analytics.vercel.app-0d9488" alt="world-pulse-analytics.vercel.app"></a>
 </td>
 </tr>
 </table>
@@ -30,18 +30,18 @@
 <table>
 <tr>
 <td width="50%" align="center">
-🏫 <b>臺灣國民小學校別圖集</b>
-<hr>
+<b>🏫 臺灣國民小學校別圖集</b>
+<br><br>
 <a href="https://elementary-schools-treemap-app.vercel.app"><img src="docs/screenshots/elementary-schools-treemap-app.png" alt="臺灣國民小學校別圖集"></a>
-<hr>
-<a href="https://elementary-schools-treemap-app.vercel.app">elementary-schools-treemap-app.vercel.app</a>
+<br><br>
+<a href="https://elementary-schools-treemap-app.vercel.app"><img src="https://img.shields.io/badge/elementary--schools--treemap--app.vercel.app-0d9488" alt="elementary-schools-treemap-app.vercel.app"></a>
 </td>
 <td width="50%" align="center">
-🌡️ <b>臺灣月均溫網格圖集</b>
-<hr>
+<b>🌡️ 臺灣月均溫網格圖集</b>
+<br><br>
 <a href="https://temperature-grid-app.vercel.app"><img src="docs/screenshots/temperature-grid-app.png" alt="臺灣月均溫網格圖集"></a>
-<hr>
-<a href="https://temperature-grid-app.vercel.app">temperature-grid-app.vercel.app</a>
+<br><br>
+<a href="https://temperature-grid-app.vercel.app"><img src="https://img.shields.io/badge/temperature--grid--app.vercel.app-0d9488" alt="temperature-grid-app.vercel.app"></a>
 </td>
 </tr>
 </table>
