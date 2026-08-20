@@ -10,8 +10,7 @@
 
 | **臺灣鄉鎮統計圖集** | **世界發展數據分析平台** |
 | :---: | :---: |
-| <img width="2846" height="1271" alt="臺灣鄉鎮統計圖集" src="https://github.com/user-attachments/assets/f074bf3f-7719-48cb-b17a-0bbcb6aebbdb" /> | <img width="2855" height="1247" alt="世界發展數據分析平台" src=""https://github.com/user-attachments/assets/2208d079-e179-429e-8fa8-5f9cf08e2b02" />
-" /> |
+| <img width="2846" height="1271" alt="臺灣鄉鎮統計圖集" src="https://github.com/user-attachments/assets/f074bf3f-7719-48cb-b17a-0bbcb6aebbdb" /> | <img width="2855" height="1247" alt="世界發展數據分析平台" src="https://github.com/user-attachments/assets/2208d079-e179-429e-8fa8-5f9cf08e2b02" /> |
 | https://township-drilldown-app.vercel.app/ | https://world-pulse-analytics.vercel.app/ |
 
 | **臺灣國民小學校別圖集** | **臺灣月均溫網格圖集** |
