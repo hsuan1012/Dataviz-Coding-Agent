@@ -8,7 +8,6 @@
 
 ## 實作成果展示
 
-| | |
 | :---: | :---: |
 | 📍 臺灣鄉鎮統計圖集 | <https://township-drilldown-app.vercel.app> |
 | 🌍 世界發展數據分析平台 | <https://world-pulse-analytics.vercel.app> |
