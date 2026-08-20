@@ -84,7 +84,5 @@
 │   ├── world-pulse-analytics/          # 世界發展數據分析平台
 │   ├── elementary-schools-treemap-app/ # 臺灣國民小學校別圖集
 │   └── temperature-grid-app/           # 臺灣月均溫網格圖集
-├── docs/                               # 專案文件與靜態資源
-│   └── screenshots/
 └── skill/                              # 核心框架與領域知識
     └── data-vis-coding-v2/             # 建置上述四項應用程式之核心 Claude Skill
