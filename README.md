@@ -16,14 +16,6 @@
 | 🌡️ 臺灣月均溫網格圖集 | <https://temperature-grid-app.vercel.app> |
 | 🤖 Skill 原始碼 | [`skill/data-vis-coding-v2/`](skill/data-vis-coding-v2/) |
 
-## 這個 repo 是什麼
-
-暑期實習期間，四個獨立專案（[`臺灣鄉鎮統計圖集`](https://github.com/hsuan1012/Township-Drilldown-App)、[`世界發展數據分析平台`](https://github.com/hsuan1012/World-Pulse-Analytics)、[`國小校別圖集`](https://github.com/hsuan1012/Elementary-Schools-Treemap-App)、[`月均溫網格圖集`](https://github.com/hsuan1012/Temperature-Grid-App)）各自維護在獨立的私有 repo，隨開發進度逐一上線。這個 repo 是指導老師同意公開後另外新增的「作品集」版本：把四個 app 與建置它們的 Skill 合併進同一個公開 repo，並把說明文件從「四份各自的介紹網頁」改寫成「一份完整的期末研究報告」，呈現的重點從「這是什麼 app」換成「這是一套怎麼運作的 coding agent，以及它四次產出的證據」。
-
-原本的四個 private repo 與 skill 檔案本身**不受影響、未被更動**；這裡的內容是複製後重新整理的成果快照（已排除 `node_modules`／`dist`／各專案自己的 `.git`／IDE 暫存目錄）。
-
----
-
 ## 1. 研究動機（Motivation）
 
 大型語言模型已能直接產生資料視覺化程式碼，但「一次性提示（one-shot prompt）」產出的視覺化應用普遍存在三類問題：
