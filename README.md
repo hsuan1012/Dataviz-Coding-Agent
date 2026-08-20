@@ -8,6 +8,21 @@
 
 ## 實作成果展示
 
+| **臺灣鄉鎮統計圖集** | **世界發展數據分析平台** |
+| :---: | :---: |
+| <img src="<img width="2846" height="1271" alt="image" src="https://github.com/user-attachments/assets/f074bf3f-7719-48cb-b17a-0bbcb6aebbdb" />
+" alt="臺灣鄉鎮統計圖集" /> | <img src="<img width="2855" height="1247" alt="image" src="https://github.com/user-attachments/assets/f827263b-361a-445e-bfb3-8564186026a8" />
+" alt="世界發展數據分析平台" /> |
+| https://township-drilldown-app.vercel.app/ | https://world-pulse-analytics.vercel.app/ |
+
+| **臺灣國民小學校別圖集** | **臺灣月均溫網格圖集** |
+| :---: | :---: |
+| <img src="<img width="2879" height="1254" alt="image" src="https://github.com/user-attachments/assets/43f0c980-a8da-4216-9bb6-9993f101ad2a" />
+" />
+" alt="臺灣國民小學校別圖集" /> | <img src="<img width="2879" height="1278" alt="image" src="https://github.com/user-attachments/assets/2478f05a-f6d6-453e-bc1d-f076990c2cf2" />
+" /> |
+| https://elementary-schools-treemap-app.vercel.app/ | https://temperature-grid-app.vercel.app/ |
+
 <table>
 <tr>
 <td width="50%" align="center">
