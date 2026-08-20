@@ -56,7 +56,7 @@
 
 ## 技術棧
 *   **前端架構：** React 18、TypeScript (Vite)、Tailwind CSS
-*   **視覺化引擎：** D3 v7、three.js、globe.gl
+*   **視覺化引擎：** D3 v7（四專案共用）、three.js／globe.gl（世界發展數據分析平台之 3D 地球儀專屬）
 *   **資料工程（ETL）：** Python (pandas/pytest)、Node.js
 *   **自動化測試：** vitest、Playwright
 *   **版控與部署：** GitHub、Vercel
