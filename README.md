@@ -36,27 +36,30 @@
 
 ## 研究方案
 
-我們提出一套五層、五階段的框架，用於以 AI 代理人建構互動式資料視覺化，讓我們得以在不同專案間持續維持產出品質。我們將此框架實作為一個 Claude Skill，即本 repo 的 [`skill/data-vis-coding-v2/`](skill/data-vis-coding-v2/)。
+本研究提出一套由「五層驗證」與「五階段流程」構成之系統化框架，專用於引導 AI Agent 建構互動式資料視覺化應用，確保跨專案產出品質之一致性與穩定性。該框架已具體實作為 Claude Skill（存放於 skill/data-vis-coding-v2/）。
 
-### 品質管控（Quality Control）— 五層驗證
+### 品質管控（五層驗證機制）
 
 | 驗證層 | 內容 |
-|---|---|
-| 單元測試（vitest） | 資料運算、reducer、尺度換算 |
-| ETL 測試（pytest） | 聚合運算、投影修正 |
-| 端對端腳本（Playwright） | 實際量測渲染後的像素，而非憑空假設 |
-| 數值抽查 | 手算數值對照圖表實際顯示結果 |
-| 人工審查 | 每次發布前的最終視覺查核 |
+|驗證層級|檢驗標的與執行內容|
+| 單元測試（vitest） | 涵蓋資料運算邏輯、狀態管理（Reducer）及尺度映射（Scale conversion）。 |
+| ETL 測試（pytest） | 驗證資料聚合運算與空間投影修正之正確性。 |
+| 端對端腳本（Playwright） | 針對渲染後之像素進行精確量測，排除非實證之視覺預設。 |
+| 數值抽查驗證 | 以獨立算式或人工精算數值，並與圖表渲染結果進行交叉比對。 |
+| 人工審查 | 系統部署前之最終視覺與互動體驗查核。 |
 
-第 1–4 層全自動化，把關每次發布；第 5 層則是人保留在迴圈中之處。
+機制說明：前四個層級隸屬全自動化檢驗流程，作為每次版本發布之防線；第五層級則精準界定「人在迴圈（Human-in-the-Loop）」之必要介入節點。
 
-### 產品建構（Product Building）— 五階段工作流程
+### 產品建構（五階段工作流程）
 
-**規格釐清 → 資料處理 → 圖表選型 → 元件實作 → 多層次驗證**
+標準化開發：規格釐清 ➔ 資料處理 ➔ 圖表選型 ➔ 元件實作 ➔ 多層次驗證
 
-每個功能走固定管線：brainstorming（需求與方案定案）→ spec（規格書存檔）→ plan（實作計畫）→ 測試驅動開發（TDD）→ 上述五層驗證 → 使用者驗收 → 合併部署。發現 bug 時不直接提供解法，而是提供截圖與重現步驟，由 AI 依 systematic-debugging 找出根因後修復，再把教訓通則化回寫至 skill。核心原則是**內容與樣式分離**——先決定「畫什麼」，再套固定樣式字典決定「長怎樣」，避免每個專案的視覺語言各自漂移。v2 另可一鍵 scaffold 專案骨架（純前端或全端、內建雙主題），並在動手前用 layout picker 先選版面。
-
-**技術棧**：React 18＋TypeScript（Vite）、Tailwind CSS、D3 v7（四專案共用地圖投影／級距／補間／框選）、three.js＋globe.gl（地球儀專屬）、Python（pandas／pytest）或 Node.js 做 ETL、vitest＋Playwright 做前端驗證、GitHub＋Vercel 做版控與部署。
+**技術**
+- **前端架構：** React 18、TypeScript (Vite)、Tailwind CSS
+- **視覺化引擎：** D3 v7、three.js、globe.gl
+- **資料工程（ETL）：** Python (pandas/pytest)、Node.js
+- **自動化測試：** vitest、Playwright
+- **版控與部署：** GitHub、Vercel
 
 | AI／工具 | 角色 |
 |---|---|
