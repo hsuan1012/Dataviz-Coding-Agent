@@ -8,6 +8,8 @@
 
 ## 實作成果展示
 
+🤖 **Skill 原始碼**：[`skill/data-vis-coding-v2/`](skill/data-vis-coding-v2/)
+
 | **臺灣鄉鎮統計圖集** | **世界發展數據分析平台** |
 | :---: | :---: |
 | <img width="2846" height="1271" alt="臺灣鄉鎮統計圖集" src="https://github.com/user-attachments/assets/f074bf3f-7719-48cb-b17a-0bbcb6aebbdb" /> | <img width="2855" height="1247" alt="世界發展數據分析平台" src="https://github.com/user-attachments/assets/2208d079-e179-429e-8fa8-5f9cf08e2b02" /> |
@@ -18,15 +20,15 @@
 | <img width="2879" height="1254" alt="臺灣國民小學校別圖集" src="https://github.com/user-attachments/assets/43f0c980-a8da-4216-9bb6-9993f101ad2a" /> | <img width="2879" height="1278" alt="臺灣月均溫網格圖集" src="https://github.com/user-attachments/assets/2478f05a-f6d6-453e-bc1d-f076990c2cf2" /> |
 | https://elementary-schools-treemap-app.vercel.app/ | https://temperature-grid-app.vercel.app/ |
 
-🤖 **Skill 原始碼**：[`skill/data-vis-coding-v2/`](skill/data-vis-coding-v2/)
+## 研究動機
 
-## 研究動機（Motivation）— Vibe Coding 面臨的三項挑戰
+儘管大型語言模型已具備自動生成資料視覺化程式碼之能力，然過度仰賴「單次提示（One-shot prompt）」之 Vibe Coding 模式，實務上仍面臨下列三項核心挑戰：
 
-大型語言模型已能直接產生資料視覺化程式碼，但「一次性提示（one-shot prompt）」式的 Vibe Coding 普遍存在三項挑戰：
+1. **隱蔽之數值與語意錯誤：** 諸如資料錯置、視覺幻覺或統計偏誤等問題，於視覺呈現上缺乏顯著特徵，且常規之型別檢查與單元測試亦難以有效攔截。
+2. **視覺驗證之侷限性：**地圖投影失真、圖例裁切或空間座標溢出等視覺排版瑕疵，往往能規避既有之自動化測試。因此，如何精準界定「人在迴圈（Human-in-the-Loop）」之最佳介入節點，以兼顧異常偵測精確度與開發效率，為一關鍵課題。
+3. **單次提示導致經驗無法累積：** 若每次視覺化開發皆仰賴從零開始之提示工程，將缺乏狀態保存與知識傳承機制，導致開發經驗與除錯教訓難以固化為可複用之資產。
 
-1. **隱藏的數值與語意錯誤**——資料錯置、視覺幻覺、統計偏誤（例如以「平均之平均」聚合比率指標）在畫面上不易察覺，型別檢查與單元測試也攔不到。
-2. **視覺驗證的侷限**——地圖投影糊掉、圖例被裁切、離島被畫到框外，這類「版面壞掉」的缺陷可以通過所有自動測試；人在迴圈（Human-in-the-Loop）該站在哪裡，才不會既漏掉真問題、又浪費在瑣事上？
-3. **一次性提示，經驗無法累積**——若每次視覺化開發都從零開始提示，經驗就無法累積。
+
 
 ## 研究目標（Research Objectives）— 三大核心方向
 
