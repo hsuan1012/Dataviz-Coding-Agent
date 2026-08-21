@@ -78,7 +78,7 @@
 ## 儲存庫結構
 
 ```text
-.
+Dataviz-Coding-Agent/
 ├── apps/                               # 獨立資料視覺化應用程式目錄
 │   ├── township-drilldown-app/         # 臺灣鄉鎮統計圖集
 │   ├── world-pulse-analytics/          # 世界發展數據分析平台
@@ -86,3 +86,4 @@
 │   └── temperature-grid-app/           # 臺灣月均溫網格圖集
 └── skill/                              # 核心框架與領域知識
     └── data-vis-coding-v2/             # 建置上述四項應用程式之核心 Claude Skill
+```
