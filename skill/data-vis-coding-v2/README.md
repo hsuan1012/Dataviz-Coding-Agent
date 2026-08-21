@@ -15,7 +15,6 @@ v2 另可**一鍵 scaffold 專案骨架**（`scripts/scaffold.py`，純前端或
 
 ## 檔案結構
 
-```text
 data-vis-coding-v2/
 ├── assets/             # 靜態資源庫：版面配置樣板（Layout Picker）與視覺樣式字典
 ├── evals/              # 評估模組：代理觸發機制與行為邊界之評測腳本
@@ -24,17 +23,6 @@ data-vis-coding-v2/
 │   └── scaffold.py     # 專案骨架與基礎環境生成器
 ├── tests/              # 測試套件：針對本 Skill 核心邏輯之 pytest 單元測試
 └── SKILL.md            # Skill 核心定義檔：包含詮釋資料（Frontmatter）與標準化工作流程
-
-## 資料夾結構
-
-| 路徑 | 內容 |
-|---|---|
-| `SKILL.md` | skill 主文件（frontmatter + 工作流程） |
-| `references/` | 分項參考：圖表選型、版面選項、技術棧、驗證、流程 |
-| `scripts/scaffold.py` | 專案骨架產生器 |
-| `assets/` | layout picker 樣板、樣式字典 |
-| `tests/` | skill 本身的 pytest 測試 |
-| `evals/` | 觸發與行為評測 |
 
 ## 怎麼使用
 
