@@ -28,6 +28,8 @@ def copy_style_dictionary(dst: Path):
 
 # styleDictionary.js 的型別宣告：純 .js 模組無宣告會讓 tsc --noEmit 報
 # TS7016（7/9 dogfood 實測），scaffold 一併生成。
+# default export 逐欄位列型別、不用 Record<string, any>——否則字典漏把 named export
+# 放進 default 匯出時 tsc 抓不到、sd.xxx 於 runtime 才爆（8/14 treemap dogfood 實測）。
 STYLE_DTS = '''
 export const colors: Record<string, string>;
 export const accent: Record<string, string>;
@@ -42,9 +44,32 @@ export const typography: {
   sizes: Record<string, number>; weights: Record<string, number>;
 };
 export const spacing: Record<string, number>;
+export const components: {
+  panel: { radius: number };
+  button: { radius: number };
+  control: { radius: number };
+  pill: { radius: number };
+  tooltip: { radius: number; padding: string };
+  bar: { radius: number };
+  swatch: { radius: number };
+};
 export const shadows: Record<string, string>;
 export const themes: { light: Record<string, any>; dark: Record<string, any> };
-declare const styleDictionary: Record<string, any>;
+declare const styleDictionary: {
+  colors: typeof colors;
+  accent: typeof accent;
+  categoricalPalette: typeof categoricalPalette;
+  sequentialScale: typeof sequentialScale;
+  quantileScale: typeof quantileScale;
+  labelContrast: typeof labelContrast;
+  flowColors: typeof flowColors;
+  tooltip: typeof tooltip;
+  typography: typeof typography;
+  spacing: typeof spacing;
+  components: typeof components;
+  shadows: typeof shadows;
+  themes: typeof themes;
+};
 export default styleDictionary;
 '''
 
@@ -200,6 +225,7 @@ INDEX_HTML = '''
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%231E293B'/><rect x='10' y='18' width='3' height='5' fill='%2394A3B8'/><rect x='15' y='14' width='3' height='9' fill='%2394A3B8'/><rect x='20' y='10' width='3' height='13' fill='%2394A3B8'/></svg>" />
     <title>{name}</title>
   </head>
   <body>

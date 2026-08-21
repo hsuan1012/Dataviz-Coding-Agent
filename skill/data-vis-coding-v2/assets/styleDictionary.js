@@ -123,9 +123,11 @@ export const themes = {
 }
 
 // --- 便利匯出：整包 ---
+// 注意：新增 named export 時必須同步加進這裡（8/14 treemap dogfood 教訓：
+// components 曾漏列，sd.components.* 在 runtime 直接 undefined 爆錯而 tsc 放行）
 const styleDictionary = {
   colors, accent, categoricalPalette, sequentialScale, quantileScale,
-  labelContrast, flowColors, tooltip, typography, spacing, shadows, themes,
+  labelContrast, flowColors, tooltip, typography, spacing, components, shadows, themes,
 }
 
 export default styleDictionary
