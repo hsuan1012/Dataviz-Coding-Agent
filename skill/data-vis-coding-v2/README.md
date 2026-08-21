@@ -1,10 +1,6 @@
 # data-vis-coding-v2
 
-這是一個 **Claude Skill**（適用於 [Claude Code](https://claude.com/claude-code) 的 Agent Skill 格式），由本人於暑期實習期間製作。開發過程使用 Claude Code 協助。
-
-一套把「**一份資料（CSV / JSON / GeoJSON）＋ 一個需求**」變成
-「**可運作、能互動、數值正確、風格一致**」的互動式資料視覺化應用的完整工作流程 skill。
-產出為 React + Tailwind + Chart.js / D3 前端。
+本專案為一款資料視覺化專用之 Claude Skill，透過整合標準化工作流程，能將原始資料（CSV/JSON/GeoJSON）與使用者需求，自動轉化為具備高互動性、數值精確且風格一致之前端應用程式（預設採用 React、Tailwind CSS 及 Chart.js/D3 等技術）。
 
 ## 這個 skill 做什麼
 
@@ -16,6 +12,18 @@
 
 v2 另可**一鍵 scaffold 專案骨架**（`scripts/scaffold.py`，純前端或全端、內建雙主題），
 並在動手前用 **layout picker**（`assets/layout-picker-template.html`）先選版面。
+
+## 檔案結構
+
+```text
+data-vis-coding-v2/
+├── assets/             # 靜態資源庫：版面配置樣板（Layout Picker）與視覺樣式字典
+├── evals/              # 評估模組：代理觸發機制與行為邊界之評測腳本
+├── references/         # 領域知識庫：涵蓋圖表選型、版面配置、技術規範、驗證機制與標準流程
+├── scripts/            # 自動化開發腳本
+│   └── scaffold.py     # 專案骨架與基礎環境生成器
+├── tests/              # 測試套件：針對本 Skill 核心邏輯之 pytest 單元測試
+└── SKILL.md            # Skill 核心定義檔：包含詮釋資料（Frontmatter）與標準化工作流程
 
 ## 資料夾結構
 
