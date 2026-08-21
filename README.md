@@ -8,7 +8,7 @@
 
 ## 實作成果展示
 
-🤖 **Skill 原始碼**：[`skill/data-vis-coding-v2/`](skill/data-vis-coding-v2/)
+**Skill 原始碼**：[`skill/data-vis-coding-v2/`](skill/data-vis-coding-v2/)
 
 | **臺灣鄉鎮統計圖集** | **世界發展數據分析平台** |
 | :---: | :---: |
