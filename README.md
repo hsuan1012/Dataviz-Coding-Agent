@@ -14,10 +14,8 @@
 | :---: | :---: |
 | <img width="2846" height="1271" alt="臺灣鄉鎮統計圖集" src="https://github.com/user-attachments/assets/f074bf3f-7719-48cb-b17a-0bbcb6aebbdb" /> | <img width="2855" height="1247" alt="世界發展數據分析平台" src="https://github.com/user-attachments/assets/0a1d561f-e680-4760-871c-bf0bf5b7f4d0" /> |
 | https://township-drilldown-app.vercel.app/ | https://world-pulse-analytics.vercel.app/ |
-
 | **臺灣國民小學校別矩形樹狀圖** | **臺灣月均溫地圖** |
-| :---: | :---: |
-| <img width="2879" height="1254" alt="臺灣國民小學校別矩形樹狀圖" src= "https://github.com/user-attachments/assets/9997e8d9-aaaa-4657-b720-da8142e88235" /> | <img width="2879" height="1278" alt="臺灣月均溫地圖" src="https://github.com/user-attachments/assets/416c36c3-d5af-466b-b18e-3fcd18de7ca0" /> |
+| <img width="2879" height="1254" alt="臺灣國民小學校別矩形樹狀圖" src="https://github.com/user-attachments/assets/9997e8d9-aaaa-4657-b720-da8142e88235" /> | <img width="2879" height="1278" alt="臺灣月均溫地圖" src="https://github.com/user-attachments/assets/416c36c3-d5af-466b-b18e-3fcd18de7ca0" /> |
 | https://elementary-schools-treemap-app.vercel.app/ | https://temperature-grid-app.vercel.app/ |
 
 ## 研究動機
