@@ -89,7 +89,7 @@ export const translations: Record<Language, Dict> = {
     treemapAria: (p, m) => `${p}國民小學${m} treemap`,
   },
   en: {
-    title: "Taiwan Elementary Schools Atlas",
+    title: "Taiwan Elementary Schools Treemap",
     subtitle: (y, m) => `SY ${y} · County › Township › School drill-down · Area = ${m.toLowerCase()}`,
     measure: { students: "Students", teachers: "Full-time Teachers" },
     kpiSchools: "Schools",
