@@ -131,6 +131,13 @@ export function strokeColorFor(isHovered: boolean, isFocused: boolean, dark = fa
   return dark ? STROKE_HIGHLIGHT_DARK : STROKE_HIGHLIGHT;
 }
 
+// 8/24 使用者回饋:地球儀 hover 國家時,散布圖對應泡泡也要有同一玫紅外框(比照
+// township-drilldown-app 的 Scatter 懸停高亮)。單獨匯出玫紅給 BubbleChart 用——
+// 散布圖的優先權是 hover=玫紅、已選取仍走 --accent 青綠,跟 strokeColorFor
+// (hover/選取都吃玫紅)不同,所以不能直接共用那個函式。
+export const strokeHighlight = (dark = false): string =>
+  dark ? STROKE_HIGHLIGHT_DARK : STROKE_HIGHLIGHT;
+
 // 選取國家的側壁(polygonSideColor)——搭配 WorldGlobe.tsx 的 polygonAltitude 墊高,
 // 繞國界一圈的立面換成同一個強調色系、拉高不透明度,視覺上比 1px 描邊更像「加粗邊框」。
 export function sideColorFor(isFocused: boolean, dark = false): string {

@@ -252,5 +252,15 @@ export function WorldGlobe({ countries, records }: { countries: CountryMeta[]; r
       );
   }, [state.hoveredCountry, state.focusSelection, dark, lang, state.channels.color, colorValueByGeo, isNeutral]);
 
-  return <div ref={containerRef} className="h-full w-full" />;
+  // 8/24:滑鼠「從國家上方直接離開地球儀畫布」時,onPolygonHover 不會再收到 null
+  // (它只在畫布內 mousemove 掃到非國家區才觸發),hoveredCountry 會殘留——散布圖的
+  // 玫紅 hover 外框跟著留在畫面上(與 township-drilldown-app 修過的 hoverCounty
+  // 殘留同型)。容器補 onMouseLeave 保底清除。
+  return (
+    <div
+      ref={containerRef}
+      className="h-full w-full"
+      onMouseLeave={() => dispatch({ type: "SET_HOVERED", geo: null })}
+    />
+  );
 }

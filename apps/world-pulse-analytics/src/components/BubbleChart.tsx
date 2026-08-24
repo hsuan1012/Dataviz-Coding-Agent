@@ -24,6 +24,7 @@ import {
   type MetricKey,
 } from "../lib/channels";
 import { colorForRegion } from "../lib/regionColors";
+import { strokeHighlight } from "../lib/globePoints";
 import { formatCountryDisplayName } from "../lib/countryDisplayName";
 import { geosInRect, normalizeRect, isBrushTrivial, type PlacedBubble } from "../lib/brushSelect";
 import { buildYearIndex, interpolateRecord } from "../lib/interpolateRecords";
@@ -587,9 +588,16 @@ export function BubbleChart({
         // U8-1:比照鄉鎮版 Scatter.tsx(144-198 行)的樣式邏輯——描邊改走 stroke 不透明、
         // 填色改走 fillOpacity,兩者分開控制(原本整體 opacity 會把描邊也一起變淡)。
         // 優先權:hover > 選中(focusSelection 內)> 一般/灰化。
+        // 8/24 使用者回饋:hover 描邊從 --accent 青綠改成與地球儀邊框同一組玫紅
+        // (strokeHighlight,比照鄉鎮版 Scatter 的懸停高亮)——地球儀 hover 國家時,
+        // 散布圖對應泡泡同步亮玫紅外框;已選取(未 hover)仍維持 --accent 青綠。
         const fillOpacity = isDimmed ? 0.25 : isProjection ? 0.35 : 0.7;
-        const strokeColor = isHovered || isFocused ? "var(--accent)" : "var(--color-surface)";
-        const strokeWidth = isHovered ? 1.8 : isFocused ? 1.2 : 0.5;
+        const strokeColor = isHovered
+          ? strokeHighlight(dark)
+          : isFocused
+            ? "var(--accent)"
+            : "var(--color-surface)";
+        const strokeWidth = isHovered ? 2.5 : isFocused ? 1.2 : 0.5;
 
         return (
           <circle
@@ -644,6 +652,24 @@ export function BubbleChart({
             </text>
           );
         })}
+      {/* 8/24:hover 中的泡泡在最上層再描一圈玫紅外框(比照鄉鎮版 Scatter 的 .raise())——
+          泡泡本身的描邊會被後畫的重疊泡泡蓋住,地球儀 hover 到密集區的國家時外框可能
+          整圈看不到;這圈畫在所有泡泡與選取標籤之後、pointerEvents 關閉不擋 hover/click。 */}
+      {bubbles
+        .filter(({ country }) => country.geo === state.hoveredCountry)
+        .map(({ country, record }) => (
+          <circle
+            key={`hover-ring-${country.geo}`}
+            className="bubble-hover-ring"
+            cx={xScale(record[state.channels.x]!)}
+            cy={yScale(record[state.channels.y]!)}
+            r={rScale(record[state.channels.size]!)}
+            fill="none"
+            stroke={strokeHighlight(dark)}
+            strokeWidth={2.5}
+            pointerEvents="none"
+          />
+        ))}
       </g>
         </svg>
       )}

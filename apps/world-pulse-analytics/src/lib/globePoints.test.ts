@@ -4,6 +4,7 @@ import {
   buildDecorativePolygonData,
   capColorFor,
   strokeColorFor,
+  strokeHighlight,
   sideColorFor,
   makeGlobeFill,
   DECORATIVE_COLOR,
@@ -96,6 +97,18 @@ describe("strokeColorFor", () => {
   it("強調色跟歐洲洲別色不同(避免選到歐洲國家時邊框融進填色)", () => {
     expect(strokeColorFor(true, false)).not.toBe(colorForRegion("europe", false));
     expect(strokeColorFor(true, false, true)).not.toBe(colorForRegion("europe", true));
+  });
+});
+
+describe("strokeHighlight", () => {
+  // 8/24 使用者回饋:地球儀 hover 國家時,散布圖對應泡泡也要有玫紅外框(比照
+  // township-drilldown-app 的 Scatter)——BubbleChart 直接吃這個共用色,確保
+  // 地球儀邊框與散布圖 hover 外框永遠同一組玫紅、不會各自演化。
+  it("回傳與 strokeColorFor hover 相同的玫紅色(淺/深主題各自對應)", () => {
+    expect(strokeHighlight()).toBe(strokeColorFor(true, false));
+    expect(strokeHighlight(true)).toBe(strokeColorFor(true, false, true));
+    expect(strokeHighlight()).toBe("#DB2777");
+    expect(strokeHighlight(true)).toBe("#F472B6");
   });
 });
 
