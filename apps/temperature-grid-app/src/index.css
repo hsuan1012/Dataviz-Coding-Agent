@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* 青綠膠囊互動語言(比照臺灣國民小學校別圖集/世界發展數據分析平台):
+/* 青綠膠囊互動語言(比照臺灣國民小學校別矩形樹狀圖/世界發展數據分析平台):
    未啟用態=淡綠底+accent 字,hover 加深;啟用態=實色 accent(inline style 給);
    :active 縮放回饋、:focus-visible 無障礙 focus ring。
    --accent / --accent-fg 由 App 根節點依當前主題注入。 */

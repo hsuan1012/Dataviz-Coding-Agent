@@ -8,7 +8,7 @@ interface Props {
   year: number // 當前年:垂直參考線+放大點+數值標籤,換年/播放時平滑移動
 }
 
-// 側欄歷年趨勢 sparkline(比照臺灣國民小學校別圖集 Sidebar Sparkline):
+// 側欄歷年趨勢 sparkline(比照臺灣國民小學校別矩形樹狀圖 Sidebar Sparkline):
 // 折線+全點+當前年標記(參考線/放大點/頂帶數值標籤,transition 平滑移動)+首末端點註記。
 const W = 240
 const H = 56

@@ -1,4 +1,4 @@
-# 臺灣國民小學校別圖集（Zoomable Treemap）
+# 臺灣國民小學校別矩形樹狀圖（Zoomable Treemap）
 
 **Live site：<https://elementary-schools-treemap-app.vercel.app>**
 

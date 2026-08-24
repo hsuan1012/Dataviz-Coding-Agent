@@ -1,4 +1,4 @@
-// 中英雙語字典＋LanguageProvider(架構比照臺灣國民小學校別圖集/世界發展數據分析平台)。
+// 中英雙語字典＋LanguageProvider(架構比照臺灣國民小學校別矩形樹狀圖/世界發展數據分析平台)。
 // 縣市名:原始資料為中文,英文模式用官方英譯對照表。
 import { createContext, useContext, useState, type ReactNode } from 'react'
 
