@@ -86,7 +86,9 @@ function Inner() {
   const domain = useMemo<[number, number] | null>(() => (meta ? [meta.tmin, meta.tmax] : null), [meta])
   const onMonth = useCallback((m: number) => setMonth(m), [])
   // 單擊月份膠囊=切換選取(老師 8/24 二版:再次點擊取消,取代原雙擊取消):
-  // 選入時同步把地圖切到該月;取消時地圖留在原月不跳動
+  // 選入時同步把地圖切到該月;取消「當前顯示月」時退回選取集中最近選入的月份
+  // (使用者 8/24:選3月→選5月→取消5月,地圖應回 3月,5月不能殘留框線),
+  // 取消非當前月或取消後集合已空則地圖留在原月
   const toggleMonth = useCallback(
     (m: number) => {
       setSelMonths((prev) => {
@@ -95,9 +97,14 @@ function Inner() {
         else next.add(m)
         return next
       })
-      if (!selMonths.has(m)) setMonth(m)
+      if (!selMonths.has(m)) {
+        setMonth(m)
+      } else if (m === month) {
+        const rest = [...selMonths].filter((x) => x !== m)
+        if (rest.length > 0) setMonth(rest[rest.length - 1])
+      }
     },
-    [selMonths],
+    [selMonths, month],
   )
 
   const card = (children: React.ReactNode, extra?: React.CSSProperties) => (
@@ -229,7 +236,7 @@ function Inner() {
                 <div className="charts-row" style={{ gap: sd.spacing.gap }}>
                   {card(
                     // 地圖卡不放標題句(使用者 8/24 移除),年月浮水印直接頂到卡左上
-                    <TemperatureMap grids={grids} temps={temps} year={year} month={month} domain={domain} selectedCounty={selectedCounty} />,
+                    <TemperatureMap grids={grids} temps={temps} year={year} month={month} domain={domain} selectedCounty={selectedCounty} showMonth={selMonths.size < 2} />,
                     { flex: '0.55 1 380px', minHeight: 420 },
                   )}
                   {card(

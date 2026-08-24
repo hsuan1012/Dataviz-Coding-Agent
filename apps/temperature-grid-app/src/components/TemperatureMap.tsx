@@ -10,8 +10,11 @@ import { buildGridIndex } from '../lib/nearest'
 interface Props {
   grids: Grids
   temps: YearTemps
-  year: number // 右上角年份/月份浮水印用(老師 8/24:對應選取值,播放時隨時間跳動)
+  year: number // 左上角年份/月份浮水印用(老師 8/24:對應選取值,播放時隨時間跳動)
   month: number // 0-11
+  // 多選 2 個月以上時隱藏浮水印的月份行(使用者 8/24):地圖仍只畫單月,
+  // 大字月份易被誤讀成「地圖=整個選取集」,只留年份避免誤導
+  showMonth?: boolean
   domain: [number, number] // 全期(1980-2024)固定色階域,跨年可比
   selectedCounty?: string | null // 側欄選取縣市:其餘網格淡出聚焦
 }
@@ -36,7 +39,7 @@ function loadBoundaries(): Promise<GeoJSON.FeatureCollection> {
 
 // 動態 heatmap 地圖:canvas 逐格上色(8,975 格 × 2km),月份切換時整層重繪。
 // 色階=方向 A densityScale(全年固定 domain,逐月可比);hover 顯示網格明細。
-export default function TemperatureMap({ grids, temps, year, month, domain, selectedCounty = null }: Props) {
+export default function TemperatureMap({ grids, temps, year, month, domain, selectedCounty = null, showMonth = true }: Props) {
   const t = useTokens()
   const { t: L } = useLanguage()
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -180,7 +183,7 @@ export default function TemperatureMap({ grids, temps, year, month, domain, sele
         }}
       >
         <div style={{ fontSize: Math.min(size.w * 0.14, 58) }}>{year}</div>
-        <div style={{ fontSize: Math.min(size.w * 0.07, 28) }}>{L.months[month]}</div>
+        {showMonth && <div style={{ fontSize: Math.min(size.w * 0.07, 28) }}>{L.months[month]}</div>}
       </div>
       {/* 圖例:色帶 + 全年固定 domain 端點 */}
       <div
