@@ -57,7 +57,7 @@ township-drilldown-app 的 Direction A 設計系統（Noto Serif/Sans TC、青�
   資料來源見下方「資料來源」。
 - **深淺色主題**：地球儀卡片右上角切換；洲別色/色階/灰化色皆有深色版
   （數值沿用 township-drilldown-app 的 styleDictionary dark tokens）。
-- **中英雙語**：頁首 English/中文 切換,介面文字/國名標籤/說明彈窗全數跟隨。
+- **中英雙語**：地球儀卡片右上角 English/中文 切換（深色模式鈕左側）,介面文字/國名標籤/說明彈窗全數跟隨。
 - **矮視窗降級**：視窗高 ≤860px 時解鎖整頁捲軸、內容列改固定高度（比照
   township-drilldown-app 的高度斷點做法），桌機高度不受影響。
 

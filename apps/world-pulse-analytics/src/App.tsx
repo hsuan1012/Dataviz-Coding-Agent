@@ -40,10 +40,6 @@ function DarkModeToggle() {
       aria-pressed={dark}
       onClick={toggle}
       style={{
-        // 老師 8/4 回饋:與「使用說明」按鈕列高度不齊。實測 ChannelControls 那排
-        // items-center 因跟大小圖例(47.8px)置中,把「使用說明」按鈕往下推了 9.15625px,
-        // 這裡的 top 要跟著加回來,兩顆鈕頂邊才真正切齊(見 App.tsx 量測紀錄)。
-        position: "absolute", top: 21.15625, right: 12, zIndex: 10,
         fontSize: 13, padding: "4px 14px", borderRadius: 999, fontFamily: "inherit",
         cursor: "pointer", transition: "background .15s, border-color .15s, color .15s",
         border: `1px solid ${dark ? "var(--accent)" : "var(--color-border)"}`,
@@ -56,10 +52,10 @@ function DarkModeToggle() {
   );
 }
 
-// 8/4 使用者要求:語言切換鈕,樣式大小完全比照「選取」按鈕(同一顆 scatter-select-toggle
-// 膠囊語言)——放在標題文字「資料視覺化 · 全球指標」旁邊。中文模式顯示「English」
-// (提示切去英文)、英文模式顯示「中文」(提示切回中文),文字本身就是「按下去會變成的
-// 語言」,不用額外圖示。
+// 語言切換鈕,樣式大小完全比照「選取」按鈕(同一顆 scatter-select-toggle 膠囊語言)。
+// 中文模式顯示「English」(提示切去英文)、英文模式顯示「中文」(提示切回中文),
+// 文字本身就是「按下去會變成的語言」,不用額外圖示。
+// 8/24 使用者要求:從標題列移到地球儀卡右上角,放在深色模式鈕左邊(見 AppShell 浮動群組)。
 function LanguageToggle() {
   const { lang, t, toggle } = useLanguage();
   return (
@@ -132,22 +128,18 @@ function AppShell() {
         {/* 標題區：固定高度，不佔用主視覺區的寶貴空間；四通道下拉比照鄉鎮圖集放在標題列最右側 */}
         <div className="shrink-0 mb-3 flex flex-row items-end justify-between gap-4">
           <div>
-            {/* 8/4 使用者要求:語言切換鈕放在「資料視覺化 · 全球指標」這行字旁邊 */}
-            <div className="flex flex-row items-center gap-3">
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 13,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "var(--accent)",
-                  fontWeight: 600,
-                }}
-              >
-                {t.headerEyebrow}
-              </p>
-              <LanguageToggle />
-            </div>
+            <p
+              style={{
+                margin: 0,
+                fontSize: 13,
+                letterSpacing: "0.14em",
+                textTransform: "uppercase",
+                color: "var(--accent)",
+                fontWeight: 600,
+              }}
+            >
+              {t.headerEyebrow}
+            </p>
             <h1
               style={{
                 margin: "2px 0 0",
@@ -214,8 +206,15 @@ function AppShell() {
           <aside className="w-1/3 h-full min-h-0 flex flex-col" style={{ ...panelCardStyle, overflow: "hidden" }}>
             <div className="relative flex-1 min-h-0">
               {/* 老師 8/3 回饋:地球儀右上角加深色模式切換鈕,功能對齊
-                  township-drilldown-app 的深色模式(見 ThemeContext.tsx)。 */}
-              <DarkModeToggle />
+                  township-drilldown-app 的深色模式(見 ThemeContext.tsx)。
+                  8/24 使用者要求:語言切換鈕移到深色模式鈕左邊→兩顆包成同一個浮動群組。
+                  老師 8/4 回饋:與「使用說明」按鈕列高度不齊。實測 ChannelControls 那排
+                  items-center 因跟大小圖例(47.8px)置中,把「使用說明」按鈕往下推了
+                  9.15625px,這裡的 top 要跟著加回來,兩顆鈕頂邊才真正切齊。 */}
+              <div style={{ position: "absolute", top: 21.15625, right: 12, zIndex: 10, display: "flex", gap: 8 }}>
+                <LanguageToggle />
+                <DarkModeToggle />
+              </div>
               <WorldGlobe countries={countries} records={records} />
             </div>
             {/* 老師 8/3 回饋:南極洲/格陵蘭等 10 個裝飾地形(灰色、不可點選)要在地球儀下方
