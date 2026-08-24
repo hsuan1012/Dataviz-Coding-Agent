@@ -15,7 +15,7 @@
     <tr><th>臺灣鄉鎮統計圖集</th><th>世界發展數據分析平台</th></tr>
   </thead>
   <tbody>
-    <tr><td><img width="2846" height="1271" alt="臺灣鄉鎮統計圖集" src="https://github.com/user-attachments/assets/9bcfb68c-e980-4395-92c1-9ecf479827cd" /></td><td><img width="2855" height="1247" alt="世界發展數據分析平台" src="https://github.com/user-attachments/assets/351a53f6-aa40-4b12-887a-bc2936621829" /></td></tr>
+    <tr><td><img width="2846" height="1271" alt="臺灣鄉鎮統計圖集" src="https://github.com/user-attachments/assets/9bcfb68c-e980-4395-92c1-9ecf479827cd" /></td><td><img width="2855" height="1247" alt="世界發展數據分析平台" src="https://github.com/user-attachments/assets/488cd36c-a543-4cbd-9436-3cda412efea2" /></td></tr>
     <tr><td align="center"><a href="https://township-drilldown-app.vercel.app/">https://township-drilldown-app.vercel.app/</a></td><td align="center"><a href="https://world-pulse-analytics.vercel.app/">https://world-pulse-analytics.vercel.app/</a></td></tr>
   </tbody>
   <tbody>
