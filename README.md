@@ -15,9 +15,9 @@
 | <img width="2846" height="1271" alt="臺灣鄉鎮統計圖集" src="https://github.com/user-attachments/assets/f074bf3f-7719-48cb-b17a-0bbcb6aebbdb" /> | <img width="2855" height="1247" alt="世界發展數據分析平台" src="https://github.com/user-attachments/assets/2208d079-e179-429e-8fa8-5f9cf08e2b02" /> |
 | https://township-drilldown-app.vercel.app/ | https://world-pulse-analytics.vercel.app/ |
 
-| **臺灣國民小學校別矩形樹狀圖** | **臺灣月均溫網格圖集** |
+| **臺灣國民小學校別矩形樹狀圖** | **臺灣月均溫地圖** |
 | :---: | :---: |
-| <img width="2879" height="1254" alt="臺灣國民小學校別矩形樹狀圖" src="https://github.com/user-attachments/assets/336c4ad9-ab0d-430b-83da-5f7f895e7ae4" /> | <img width="2879" height="1278" alt="臺灣月均溫網格圖集" src="https://github.com/user-attachments/assets/2478f05a-f6d6-453e-bc1d-f076990c2cf2" /> |
+| <img width="2879" height="1254" alt="臺灣國民小學校別矩形樹狀圖" src="https://github.com/user-attachments/assets/336c4ad9-ab0d-430b-83da-5f7f895e7ae4" /> | <img width="2879" height="1278" alt="臺灣月均溫地圖" src="https://github.com/user-attachments/assets/2478f05a-f6d6-453e-bc1d-f076990c2cf2" /> |
 | https://elementary-schools-treemap-app.vercel.app/ | https://temperature-grid-app.vercel.app/ |
 
 ## 研究動機
@@ -83,7 +83,7 @@ Dataviz-Coding-Agent/
 │   ├── township-drilldown-app/         # 臺灣鄉鎮統計圖集
 │   ├── world-pulse-analytics/          # 世界發展數據分析平台
 │   ├── elementary-schools-treemap-app/ # 臺灣國民小學校別矩形樹狀圖
-│   └── temperature-grid-app/           # 臺灣月均溫網格圖集
+│   └── temperature-grid-app/           # 臺灣月均溫地圖
 └── skill/                              # 核心框架與領域知識
     └── data-vis-coding-v2/             # 建置上述四項應用程式之核心 Claude Skill
 ```
