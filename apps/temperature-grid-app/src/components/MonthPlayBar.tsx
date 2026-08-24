@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import { useTokens } from '../lib/useTokens'
 import { useLanguage } from '../lib/i18n'
 import sd from '../lib/styleDictionary.js'
@@ -6,8 +5,9 @@ import sd from '../lib/styleDictionary.js'
 // 底部播放列(8/18 定版):拆成兩張卡——月份卡右緣對齊「地圖|ridgeline 交界」
 // (App 以與主列相同的 flex 比例排列,邊界自然對齊),年份卡在 ridgeline 下方。
 // 12 個月份膠囊在卡內等寬平均分配(使用者 8/18)。
+// 8/24 老師回饋:月份卡移除 Play 鈕(播放只留年份);月份膠囊改多選——
+// 單擊=切換選取(選入時同時把地圖切到該月,再點一次取消);選取集僅影響 ridgeline 淡出。
 
-const TICK_MS = 900
 const CONTROL_H = 30 // 播放鈕與月份膠囊統一高度(使用者 8/18:上下寬度要一致)
 
 function PlayIcon({ playing }: { playing: boolean }) {
@@ -59,41 +59,34 @@ function PlayButton({ playing, onClick, testid, ariaPlay, ariaPause }: {
   )
 }
 
-export function MonthControls({ month, playing, onMonth, onTogglePlay }: {
+export function MonthControls({ month, selected, onToggle }: {
   month: number
-  playing: boolean
-  onMonth: (m: number) => void
-  onTogglePlay: () => void
+  selected: Set<number>
+  onToggle: (m: number) => void
 }) {
   const t = useTokens()
   const { t: L } = useLanguage()
-  const monthRef = useRef(month)
-  monthRef.current = month
-
-  useEffect(() => {
-    if (!playing) return
-    const id = window.setInterval(() => onMonth((monthRef.current + 1) % 12), TICK_MS)
-    return () => window.clearInterval(id)
-  }, [playing, onMonth])
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: sd.spacing.gap, minWidth: 0 }}>
-      <PlayButton playing={playing} onClick={onTogglePlay} testid="play-toggle" ariaPlay={L.playAria} ariaPause={L.pauseAria} />
       {/* 12 個月等寬平均分配吃滿卡寬 */}
       <div style={{ display: 'flex', gap: 6, flex: 1, minWidth: 0 }}>
         {L.months.map((label, m) => {
-          const active = m === month
+          const isSel = selected.has(m) // 多選集內:實心 accent
+          const isCurrent = m === month // 地圖當前月:accent 描邊+粗體(與多選態區分)
           return (
             <button
               key={m}
-              onClick={() => onMonth(m)}
+              onClick={() => onToggle(m)}
+              aria-pressed={isSel}
               data-testid={`month-${m + 1}`}
               style={{
                 flex: 1,
                 minWidth: 0,
-                background: active ? t.accent : t.surface,
-                color: active ? t.accentFg : t.textMuted,
-                border: `1px solid ${active ? t.accent : t.border}`,
+                background: isSel ? t.accent : t.surface,
+                color: isSel ? t.accentFg : isCurrent ? t.text : t.textMuted,
+                border: `1px solid ${isSel || isCurrent ? t.accent : t.border}`,
+                boxShadow: isCurrent ? `inset 0 0 0 1px ${t.accent}` : 'none',
                 borderRadius: sd.components.pill.radius,
                 height: CONTROL_H,
                 boxSizing: 'border-box',
@@ -103,9 +96,11 @@ export function MonthControls({ month, playing, onMonth, onTogglePlay }: {
                 justifyContent: 'center',
                 cursor: 'pointer',
                 fontSize: sd.typography.sizes.body,
+                fontWeight: isCurrent ? sd.typography.weights.bold : sd.typography.weights.normal,
                 fontFamily: 'inherit',
                 fontVariantNumeric: 'tabular-nums',
                 whiteSpace: 'nowrap',
+                transition: 'background .15s, border-color .15s, color .15s',
               }}
             >
               {label}

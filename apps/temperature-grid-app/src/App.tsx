@@ -25,7 +25,8 @@ function Inner() {
   const [year, setYear] = useState<number>(2024) // 預設最新年(家族慣例)
   const [error, setError] = useState<string | null>(null)
   const [month, setMonth] = useState(0)
-  const [playing, setPlaying] = useState(false)
+  // 月份多選(老師 8/24):單擊選入(並把地圖切到該月),雙擊取消;集合僅驅動 ridgeline 淡出
+  const [selMonths, setSelMonths] = useState<Set<number>>(new Set())
   // 縣市選取(側欄競速長條;點選→地圖聚焦+ridgeline 切該縣分布)
   const [selectedCounty, setSelectedCounty] = useState<string | null>(null)
   const countyIdx = useMemo(() => (grids ? buildCountyIndices(grids.county) : null), [grids])
@@ -70,7 +71,7 @@ function Inner() {
       .catch((e) => setError(String(e)))
   }, [])
 
-  // 年份播放(與月份播放互斥):~1s/年,到 2024 回繞 1980
+  // 年份播放(8/24 起唯一的 Play;月份卡的播放鈕依老師回饋移除):~1s/年,到 2024 回繞 1980
   const [yearPlaying, setYearPlaying] = useState(false)
   useEffect(() => {
     if (!yearPlaying) return
@@ -80,21 +81,24 @@ function Inner() {
     }, 1000)
     return () => window.clearInterval(id)
   }, [yearPlaying, onYear])
-  const toggleMonthPlay = useCallback(() => {
-    setPlaying((p) => {
-      if (!p) setYearPlaying(false)
-      return !p
-    })
-  }, [])
-  const toggleYearPlay = useCallback(() => {
-    setYearPlaying((p) => {
-      if (!p) setPlaying(false)
-      return !p
-    })
-  }, [])
+  const toggleYearPlay = useCallback(() => setYearPlaying((p) => !p), [])
 
   const domain = useMemo<[number, number] | null>(() => (meta ? [meta.tmin, meta.tmax] : null), [meta])
   const onMonth = useCallback((m: number) => setMonth(m), [])
+  // 單擊月份膠囊=切換選取(老師 8/24 二版:再次點擊取消,取代原雙擊取消):
+  // 選入時同步把地圖切到該月;取消時地圖留在原月不跳動
+  const toggleMonth = useCallback(
+    (m: number) => {
+      setSelMonths((prev) => {
+        const next = new Set(prev)
+        if (next.has(m)) next.delete(m)
+        else next.add(m)
+        return next
+      })
+      if (!selMonths.has(m)) setMonth(m)
+    },
+    [selMonths],
+  )
 
   const card = (children: React.ReactNode, extra?: React.CSSProperties) => (
     <div
@@ -224,12 +228,8 @@ function Inner() {
               <div style={{ flex: 1, minWidth: 0, minHeight: 0, display: 'flex', flexDirection: 'column', gap: sd.spacing.gap }}>
                 <div className="charts-row" style={{ gap: sd.spacing.gap }}>
                   {card(
-                    <>
-                      <div style={{ fontSize: sd.typography.sizes.sectionLabel, color: t.textMuted, marginBottom: 6 }}>
-                        {L.mapCard}
-                      </div>
-                      <TemperatureMap grids={grids} temps={temps} month={month} domain={domain} selectedCounty={selectedCounty} />
-                    </>,
+                    // 地圖卡不放標題句(使用者 8/24 移除),年月浮水印直接頂到卡左上
+                    <TemperatureMap grids={grids} temps={temps} year={year} month={month} domain={domain} selectedCounty={selectedCounty} />,
                     { flex: '0.55 1 380px', minHeight: 420 },
                   )}
                   {card(
@@ -243,7 +243,7 @@ function Inner() {
                         )}
                       </div>
                       <div style={{ flex: 1, minHeight: 0, overflow: 'hidden' }}>
-                        <RidgelinePlot temps={temps} month={month} domain={domain} onPickMonth={onMonth} indices={ridgeIndices} />
+                        <RidgelinePlot temps={temps} month={month} domain={domain} onPickMonth={onMonth} indices={ridgeIndices} selectedMonths={selMonths} />
                       </div>
                     </>,
                     { flex: '1.7 1 480px', minHeight: 420 },
@@ -261,7 +261,7 @@ function Inner() {
                     { flex: '0.55 1 380px', minWidth: 0, padding: `8px ${sd.spacing.chartPadding}px` },
                   )}
                   {card(
-                    <MonthControls month={month} playing={playing} onMonth={onMonth} onTogglePlay={toggleMonthPlay} />,
+                    <MonthControls month={month} selected={selMonths} onToggle={toggleMonth} />,
                     { flex: '1.7 1 480px', minWidth: 0, padding: `8px ${sd.spacing.chartPadding}px` },
                   )}
                 </div>

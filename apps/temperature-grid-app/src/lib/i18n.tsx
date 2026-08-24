@@ -7,7 +7,6 @@ export type Language = 'zh' | 'en'
 export interface Dict {
   title: string
   subtitle: (year: number) => string
-  mapCard: string
   ridgeCard: string
   statMean: (m: string) => string
   statMax: (m: string) => string
@@ -47,9 +46,8 @@ const COUNTY_EN: Record<string, string> = {
 
 export const translations: Record<Language, Dict> = {
   zh: {
-    title: '臺灣月均溫網格圖集',
+    title: '臺灣月均溫地圖',
     subtitle: (y) => `${y} 年全臺 2 公里網格的逐月平均氣溫——播放看季節冷暖,拖曳年份看 45 年變化`,
-    mapCard: '動態 HEATMAP 地圖・hover 看網格明細',
     ridgeCard: 'RIDGELINE・各月網格月均溫分布(點 ridge 可跳至該月)',
     statMean: (m) => `${m}・全島網格均溫`,
     statMax: (m) => `${m}・最熱網格`,
@@ -78,9 +76,8 @@ export const translations: Record<Language, Dict> = {
     trendTitle: (u, m) => `${u}・${m}均溫 1980–2024 趨勢`,
   },
   en: {
-    title: 'Taiwan Monthly Temperature Grid Atlas',
+    title: 'Taiwan Monthly Temperature Map',
     subtitle: (y) => `Monthly mean temperatures across Taiwan on a 2 km grid, ${y} — play the months, drag through 45 years`,
-    mapCard: 'ANIMATED HEATMAP MAP · hover for grid details',
     ridgeCard: 'RIDGELINE · monthly distribution of grid temperatures (click a ridge to jump)',
     statMean: (m) => `${m} · Island mean`,
     statMax: (m) => `${m} · Warmest grid`,

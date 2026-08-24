@@ -10,6 +10,7 @@ import { buildGridIndex } from '../lib/nearest'
 interface Props {
   grids: Grids
   temps: YearTemps
+  year: number // 右上角年份/月份浮水印用(老師 8/24:對應選取值,播放時隨時間跳動)
   month: number // 0-11
   domain: [number, number] // 全期(1980-2024)固定色階域,跨年可比
   selectedCounty?: string | null // 側欄選取縣市:其餘網格淡出聚焦
@@ -35,7 +36,7 @@ function loadBoundaries(): Promise<GeoJSON.FeatureCollection> {
 
 // 動態 heatmap 地圖:canvas 逐格上色(8,975 格 × 2km),月份切換時整層重繪。
 // 色階=方向 A densityScale(全年固定 domain,逐月可比);hover 顯示網格明細。
-export default function TemperatureMap({ grids, temps, month, domain, selectedCounty = null }: Props) {
+export default function TemperatureMap({ grids, temps, year, month, domain, selectedCounty = null }: Props) {
   const t = useTokens()
   const { t: L } = useLanguage()
   const wrapRef = useRef<HTMLDivElement>(null)
@@ -159,6 +160,28 @@ export default function TemperatureMap({ grids, temps, month, domain, selectedCo
         onMouseLeave={() => setHover(null)}
         data-testid="temp-map"
       />
+      {/* 年份/月份浮水印(老師 8/24):顯示風格比照世界發展數據分析平台的大年份浮水印
+          ——粗體、tabular-nums、pointerEvents 關閉不擋 hover;
+          直接吃 year/month props,播放時 state 一變自然跳動。字級隨地圖寬度縮放設上限。
+          位置改左上、顏色用 textMuted(使用者 8/24:border 色與背景太接近不明顯) */}
+      <div
+        data-testid="map-year-month"
+        style={{
+          position: 'absolute',
+          top: 2,
+          left: 10,
+          textAlign: 'left',
+          pointerEvents: 'none',
+          color: t.textMuted,
+          fontWeight: 600,
+          fontVariantNumeric: 'tabular-nums',
+          lineHeight: 1.05,
+          userSelect: 'none',
+        }}
+      >
+        <div style={{ fontSize: Math.min(size.w * 0.14, 58) }}>{year}</div>
+        <div style={{ fontSize: Math.min(size.w * 0.07, 28) }}>{L.months[month]}</div>
+      </div>
       {/* 圖例:色帶 + 全年固定 domain 端點 */}
       <div
         style={{

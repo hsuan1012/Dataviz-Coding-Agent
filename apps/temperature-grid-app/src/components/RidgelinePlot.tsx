@@ -13,6 +13,8 @@ interface Props {
   domain: [number, number] // 全期固定 x 域與色階域
   onPickMonth?: (m: number) => void
   indices?: number[] | null // 縣市選取:只取這些網格的分布(null=全島)
+  // 月份多選(老師 8/24):集內月份保留原始色彩,集外淡出;空集=全部保留原色
+  selectedMonths?: Set<number> | null
 }
 
 // Ridgeline plot:x=月均溫、y=12 個月份,每條 ridge 是該月全部網格的 KDE 分布。
@@ -65,7 +67,7 @@ function MorphPath({ d, fill, fillOpacity, stroke, strokeWidth }: {
 const BANDWIDTH = 0.7 // °C;0.1°C 資料粒度下平滑但不抹平雙峰
 const OVERLAP = 1.9 // ridge 高度可越界到鄰行的倍率
 
-export default function RidgelinePlot({ temps, month, domain, onPickMonth, indices = null }: Props) {
+export default function RidgelinePlot({ temps, month, domain, onPickMonth, indices = null, selectedMonths = null }: Props) {
   const t = useTokens()
   const { t: L } = useLanguage()
   // 量容器實際尺寸繪製(比照 TemperatureMap):固定 viewBox 會保持長寬比留白,
@@ -161,6 +163,9 @@ export default function RidgelinePlot({ temps, month, domain, onPickMonth, indic
         .reverse()
         .map(({ path, median, m }) => {
           const active = m === month
+          // 多選淡出:有選任何月份時,集外的 ridge 降 fill-opacity(MorphPath 已有
+          // CSS transition,淡入淡出自帶動畫);空集不淡出任何月份
+          const dimmed = !!selectedMonths && selectedMonths.size > 0 && !selectedMonths.has(m)
           return (
             <g
               key={m}
@@ -172,7 +177,7 @@ export default function RidgelinePlot({ temps, month, domain, onPickMonth, indic
               <MorphPath
                 d={path}
                 fill={color(median)}
-                fillOpacity={active ? 0.98 : 0.9}
+                fillOpacity={dimmed ? 0.12 : active ? 0.98 : 0.9}
                 stroke={active ? t.accent : t.border}
                 strokeWidth={active ? 2 : 1}
               />
