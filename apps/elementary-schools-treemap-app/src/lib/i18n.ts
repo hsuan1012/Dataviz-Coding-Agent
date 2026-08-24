@@ -47,7 +47,7 @@ export interface Dict {
 
 export const translations: Record<Language, Dict> = {
   zh: {
-    title: "臺灣國民小學校別圖集",
+    title: "臺灣國民小學校別矩形樹狀圖",
     subtitle: (y, m) => `${y} 學年度・縣市 › 鄉鎮市區 › 學校三層下鑽，面積＝${m}`,
     measure: { students: "學生人數", teachers: "專任教師人數" },
     kpiSchools: "學校數",
