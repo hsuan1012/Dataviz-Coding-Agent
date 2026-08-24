@@ -17,7 +17,7 @@
 
 | **臺灣國民小學校別矩形樹狀圖** | **臺灣月均溫地圖** |
 | :---: | :---: |
-| <img width="2879" height="1254" alt="臺灣國民小學校別矩形樹狀圖" src="https://github.com/user-attachments/assets/336c4ad9-ab0d-430b-83da-5f7f895e7ae4" /> | <img width="2879" height="1278" alt="臺灣月均溫地圖" src="https://github.com/user-attachments/assets/df5c1dc9-d215-44b3-9586-773083115663" /> |
+| <img width="2879" height="1254" alt="臺灣國民小學校別矩形樹狀圖" src= "https://github.com/user-attachments/assets/9997e8d9-aaaa-4657-b720-da8142e88235" /> | <img width="2879" height="1278" alt="臺灣月均溫地圖" src="https://github.com/user-attachments/assets/416c36c3-d5af-466b-b18e-3fcd18de7ca0" /> |
 | https://elementary-schools-treemap-app.vercel.app/ | https://temperature-grid-app.vercel.app/ |
 
 ## 研究動機
