@@ -17,9 +17,11 @@ import os
 from collections import defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SOURCE_DIR = os.path.join(
-    os.path.expanduser("~"), "jayla", "supervisor",
-    "月均溫網格資料_TCCIP-20260818T070945Z-1-001", "月均溫網格資料_TCCIP")
+# 原始 TCCIP 月均溫 CSV 不進 repo(授權資料)。執行前用環境變數 TCCIP_SOURCE_DIR 指定資料夾;
+# 未設定時退回 repo 內的 data/raw/月均溫網格資料_TCCIP/(需自行放入)。
+SOURCE_DIR = os.environ.get(
+    "TCCIP_SOURCE_DIR",
+    os.path.normpath(os.path.join(HERE, "..", "data", "raw", "月均溫網格資料_TCCIP")))
 OUT_DIR = os.path.normpath(os.path.join(HERE, "..", "public", "data"))
 
 ALL_YEARS = list(range(1980, 2025))

@@ -3,7 +3,12 @@
 import { chromium } from "playwright";
 const fail = (m) => { console.error("FAIL: " + m); process.exitCode = 1; };
 const ok = (m) => console.log("PASS: " + m);
-const OUT = "C:/Users/user/jayla";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
+import { mkdirSync } from "node:fs";
+// 截圖輸出到 repo 內的 docs/superpowers/artifacts(已 gitignore),路徑相對於本腳本位置、不綁機器。
+const OUT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "docs", "superpowers", "artifacts");
+mkdirSync(OUT, { recursive: true });
 
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1500, height: 950 } });
