@@ -1,5 +1,6 @@
 from pathlib import Path
-HTML = Path(r"C:\Users\user\jayla\.claude\skills\data-vis-coding-v2\assets\layout-picker-template.html")
+# 路徑一律相對於本測試檔所在位置（skill 根目錄 = tests/ 的上一層），不綁死任何機器。
+HTML = Path(__file__).resolve().parent.parent / "assets" / "layout-picker-template.html"
 
 def test_has_placeholder():
     assert "{{PROJECT_NAME}}" in HTML.read_text(encoding="utf-8")

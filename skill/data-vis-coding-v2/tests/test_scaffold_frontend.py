@@ -1,7 +1,8 @@
 import json, subprocess, sys, os
 from pathlib import Path
 
-SKILL = Path(r"C:\Users\user\jayla\.claude\skills\data-vis-coding-v2")
+# 路徑一律相對於本測試檔所在位置（skill 根目錄 = tests/ 的上一層），不綁死任何機器。
+SKILL = Path(__file__).resolve().parent.parent
 SCRIPT = SKILL / "scripts" / "scaffold.py"
 
 

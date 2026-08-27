@@ -12,7 +12,10 @@ from core import township_income, quantile_breaks, death_rate, county_of, weight
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 APP = os.path.dirname(BASE)
-SRC = r"C:\Users\user\jayla\supervisor\data\taiwan_township_datasets-20260708T054440Z-3-001\taiwan_township_datasets"
+# 原始資料不進 repo（老師提供的 taiwan_township_datasets 資料夾與死因對照表）。
+# 執行前用環境變數指定位置；未設定時退回 repo 內的 data/raw/（需自行放入）。
+RAW = os.path.join(APP, "data", "raw")
+SRC = os.environ.get("TOWNSHIP_SRC_DIR", os.path.join(RAW, "taiwan_township_datasets"))
 GEOJSON = os.path.join(APP, "public", "taiwan_townships.geojson")
 VILLDIR = os.path.join(APP, "public", "data", "villages")
 OUT = os.path.join(APP, "public", "data")
@@ -168,7 +171,7 @@ def main():
         village_income[str(y)] = vi
 
     # --- 死亡率（鄉鎮＋縣市）---
-    CODEBOOK = r"C:\Users\user\jayla\supervisor\20260707\death-causes\data\死因統計(138分類)-鄉鎮十齡1140829\對照表.xlsx"
+    CODEBOOK = os.environ.get("DEATH_CODEBOOK_XLSX", os.path.join(RAW, "對照表.xlsx"))
     cdf = pd.read_excel(CODEBOOK, sheet_name="county")
     code_col, name_col = cdf.columns[-2], cdf.columns[-1]
     code2name = {}

@@ -10,7 +10,8 @@ import re
 import sys
 from pathlib import Path
 
-V2 = Path(r"C:\Users\user\jayla\.claude\skills\data-vis-coding-v2")
+# 路徑一律相對於本測試檔所在位置（skill 根目錄 = tests/ 的上一層），不綁死任何機器。
+V2 = Path(__file__).resolve().parent.parent
 
 sys.path.insert(0, str(V2 / "scripts"))
 from scaffold import STYLE_DTS  # noqa: E402

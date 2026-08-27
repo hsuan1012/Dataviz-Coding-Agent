@@ -1,6 +1,7 @@
 from pathlib import Path
 
-DOC = Path(r"C:\Users\user\jayla\.claude\skills\data-vis-coding-v2\references\layout-options.md")
+# 路徑一律相對於本測試檔所在位置（skill 根目錄 = tests/ 的上一層），不綁死任何機器。
+DOC = Path(__file__).resolve().parent.parent / "references" / "layout-options.md"
 
 
 def test_has_nine_layouts():

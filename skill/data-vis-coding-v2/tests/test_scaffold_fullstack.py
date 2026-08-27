@@ -1,7 +1,8 @@
 import subprocess, sys, os
 from pathlib import Path
 
-SCRIPT = Path(r"C:\Users\user\jayla\.claude\skills\data-vis-coding-v2\scripts\scaffold.py")
+# 路徑一律相對於本測試檔所在位置（skill 根目錄 = tests/ 的上一層），不綁死任何機器。
+SCRIPT = Path(__file__).resolve().parent.parent / "scripts" / "scaffold.py"
 
 
 def run_fs(tmp_path):
