@@ -8,7 +8,7 @@ import { romanizePlaceName } from "../lib/placeName";
 import { metricLabel, metricUnit, regionLabel } from "../lib/metricI18n";
 import { formatParen } from "../lib/i18n";
 import { valueAt, villageValue, resolveMetric, REGIONS, type Values, type Meta, type IndicatorKey, type Region, type VillageProps } from "../lib/data";
-import { colorForValue, regionColor } from "../lib/scales";
+import { colorForValue, regionColor, STROKE_HIGHLIGHT, STROKE_HIGHLIGHT_DARK } from "../lib/scales";
 import { splitFeatures, countyFitFeatures, insetFitFeatures, countyOf, inTaiwanBox } from "../lib/counties";
 import { drillToCounty, drillToTown, dataLevelOf, zoomDirection, type View } from "../lib/nav";
 import { xToIndicator, type ColorKey } from "../lib/scatterChannels";
@@ -20,15 +20,10 @@ import { INSET_BOXES } from "../lib/insetBoxes.js";
 // 重跑一開頭的 setHover(null) 又把剛設好的 hover 立刻清空,滑鼠移上去 tooltip 顯示不出來）。
 const NO_BREAKS: number[] = [];
 
-// 使用者回饋:選取/hover 的縣市外框改玫紅色系(比照 gapminder-bubble-globe-app 的
-// strokeColorFor)——這裡的 accent(青綠 #0D9488)剛好也是「中」區域的分類色(見
-// styleDictionary.js categorical[1]),選到中部縣市時外框會融進自己的填色裡看不出來,
-// 跟 gapminder 當初撞歐洲洲別色是同一個問題,同樣改玫紅色系解決(跟五個洲別色/區域色
-// 都拉開色相距離,不論選哪個區域都不會撞色)。
-const STROKE_HIGHLIGHT = "#DB2777";
-const STROKE_HIGHLIGHT_DARK = "#F472B6";
+// 選取/hover 外框的玫紅色系常數已移到 lib/scales.ts 共用(散布圖鄉鎮懸停高亮同色,
+// 老師 8/24 回饋後續調整),撞色緣由見該處註解。
 
-export default function Choropleth({ geo, counties, values, meta, colorChannel, year, view, villages, selectedVillage, onView, onSelectVillage, legend = true, selectedTowns = null, onHoverCounty, fluid = false }: {
+export default function Choropleth({ geo, counties, values, meta, colorChannel, year, view, villages, selectedVillage, onView, onSelectVillage, legend = true, selectedTowns = null, onHoverCounty, onHoverTown, fluid = false }: {
   geo: GeoJSON.FeatureCollection; counties: GeoJSON.FeatureCollection;
   values: Values; meta: Meta; colorChannel: ColorKey; year: number;
   view: View; villages: GeoJSON.FeatureCollection | null;
@@ -38,6 +33,7 @@ export default function Choropleth({ geo, counties, values, meta, colorChannel, 
   legend?: boolean;   // 內建圖例（方向 A 外殼用）；Taste 外殼移到右側面板欄，設 false
   selectedTowns?: string[] | null;               // 合併單頁:選取鄉鎮名單 → accent 疊加層(縣級聚合語意不變)
   onHoverCounty?: (c: string | null) => void;    // 全國層懸停縣市 → 散布圖泡泡描邊預覽
+  onHoverTown?: (full: string | null) => void;   // 縣內層懸停鄉鎮 → 散布圖對應單點高亮(老師 8/24 ③)
   fluid?: boolean;    // 合併單頁窄欄:寬度驅動(height:auto 隨 viewBox 比例),不用舊版 72vh 高度公式(窄欄會上下 letterbox)
 }) {
   const ref = useRef<SVGSVGElement>(null);
@@ -170,6 +166,8 @@ export default function Choropleth({ geo, counties, values, meta, colorChannel, 
           d3.select(this).raise().attr("stroke", highlightStroke).attr("stroke-width", 1.8);
           // 全國層懸停縣市 → 散布圖該縣泡泡描邊預覽(合併單頁,7/22 雙向互動沿用)
           if (level === "county") onHoverCounty?.((f.properties as any).COUNTYNAME as string);
+          // 縣內層懸停鄉鎮 → 散布圖對應單點高亮(老師 8/24 ③)
+          if (level === "town") onHoverTown?.((f.properties as any).FULLNAME as string);
         })
         .on("mousemove", (ev: MouseEvent, f: GeoJSON.Feature) => {
           const p = f.properties as any;
@@ -181,6 +179,7 @@ export default function Choropleth({ geo, counties, values, meta, colorChannel, 
           d3.select(this).attr("stroke", strokeOf(f)).attr("stroke-width", strokeWOf(f));
           setHover(null);
           if (level === "county") onHoverCounty?.(null);
+          if (level === "town") onHoverTown?.(null);
         })
         .on("click", (ev: MouseEvent, f: GeoJSON.Feature) => {
           // 縣市/鄉鎮點擊會下鑽(觸發 zoom in)：先記錄點擊位置供縮放中心點用；
@@ -371,7 +370,7 @@ export default function Choropleth({ geo, counties, values, meta, colorChannel, 
       }, 850);
     }
 
-  }, [geo, counties, villages, values, meta, colorChannel, year, t, lang, view, level, breaks, onView, selectedVillage, onSelectVillage, selectedTowns, onHoverCounty]);
+  }, [geo, counties, villages, values, meta, colorChannel, year, t, lang, view, level, breaks, onView, selectedVillage, onSelectVillage, selectedTowns, onHoverCounty, onHoverTown]);
 
   // 分身 timer 只在元件真正 unmount 時清——放在大繪圖 effect 裡的話，React 每次重跑該 effect
   // 前都會先執行其 cleanup，等同每一輪重繪(含村里 lazy-load 那次 direction=null 的重跑)都會

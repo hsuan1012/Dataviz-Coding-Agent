@@ -28,6 +28,12 @@ export default function TasteShell({ data, indicator, deathCause, year, view, vi
   const { lang, tr, toggle: toggleLang } = useLanguage();
   // 地圖懸停縣市 → 散布圖該縣泡泡描邊(7/22 雙向互動,合併後由外殼牽線)
   const [hoverCounty, setHoverCounty] = useState<string | null>(null);
+  // 縣內層地圖懸停鄉鎮 → 散布圖對應單點高亮(老師 8/24 ③);換視圖時「兩個懸停狀態都」清掉——
+  // 地圖整個重繪時舊 path 直接消失、mouseleave 不會觸發:實測在全國層懸停某縣點下鑽,
+  // hoverCounty 卡住讓整縣泡泡永遠掛著懸停粉框(潛伏 bug,懸停與選取描邊同色時看不出來,
+  // 8/24 懸停改玫紅後才現形)。
+  const [hoverTown, setHoverTown] = useState<string | null>(null);
+  useEffect(() => { setHoverCounty(null); setHoverTown(null); }, [view]);
   const yrs = data?.meta.years ?? [];
   const yrRange = yrs.length ? `${yrs[0]}–${yrs[yrs.length - 1]}` : "102–107"; // 依可見年份（108 已隱藏）
   const title = data ? metricLabel(scatter.x, scatterVars(data.meta).find((v) => v.key === scatter.x)?.label ?? "", lang) : "";
@@ -288,7 +294,7 @@ export default function TasteShell({ data, indicator, deathCause, year, view, vi
                     colorChannel={scatter.color} year={year}
                     view={view} villages={villages} selectedVillage={selectedVillage}
                     onView={onView} onSelectVillage={onSelectVillage} legend={false} fluid
-                    selectedTowns={selected} onHoverCounty={setHoverCounty} />
+                    selectedTowns={selected} onHoverCounty={setHoverCounty} onHoverTown={setHoverTown} />
                 </div>
                 <MapLegend meta={data.meta} colorChannel={scatter.color} view={view} />
               </div>
@@ -300,7 +306,7 @@ export default function TasteShell({ data, indicator, deathCause, year, view, vi
                   <div className="flex-1 min-h-0 w-full">
                     <Scatter values={data.values} meta={data.meta} year={year}
                       channels={scatter} geo={data.geo} selected={selected}
-                      onSelect={onSelect} onExcludeTown={onExcludeTown} hoverCounty={hoverCounty}
+                      onSelect={onSelect} onExcludeTown={onExcludeTown} hoverCounty={hoverCounty} hoverTown={hoverTown}
                       showCaption={false} />
                   </div>
                 </div>

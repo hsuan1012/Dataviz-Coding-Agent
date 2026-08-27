@@ -318,11 +318,42 @@ await selectToggle.click();
 await p.waitForTimeout(150);
 const beforeSelectDragMax = await xAxisMax();
 const beforeSelectDragYMax = await yAxisMax();
-await dragFrac(0.05, 0.05, 0.35, 0.5); // 本來就是斜向拖曳(水平+垂直都有位移)
+// 斜向拖曳(水平+垂直都有位移),框需涵蓋畫面中央的可見點群——8/24 修正後框選只計入
+// 「繪圖區內看得見」的點,原本框左上角那塊在縮放後只剩空白與被裁掉的隱形點,
+// 修正前靠隱形點誤入選才有選取數,修正後理應選不到(那正是老師回報的 bug)。
+await dragFrac(0.05, 0.05, 0.75, 0.8);
 const selN = Number((await p.locator(".mini-count").textContent())?.match(/\d+/)?.[0] ?? -1);
 if (selN > 0) ok(`選取模式下拖曳空白處仍是框選(鎖定 ${selN} 鄉鎮),不是平移`); else fail("選取模式下拖曳應該框選,但沒有鎖定任何鄉鎮");
 if ((await xAxisMax()) === beforeSelectDragMax) ok("選取模式下拖曳框選不影響 X 軸縮放範圍"); else fail("選取模式下拖曳意外改動了 X 軸縮放範圍");
 if ((await yAxisMax()) === beforeSelectDragYMax) ok("選取模式下拖曳框選不影響 Y 軸縮放範圍"); else fail("選取模式下拖曳意外改動了 Y 軸縮放範圍");
+await selectToggle.click();
+await p.waitForTimeout(150);
+
+// ---- 縮放狀態下框選只選「看得見」的點(老師 8/24 ②迴歸鎖):框住整張圖,選取數必須
+// 等於繪圖區內可見泡泡數,不能把被 clipPath 裁掉的隱形點(縮放後比例尺外插出去的座標)
+// 也算進去(修正前實測:圈 13 顆可見點會選進 32 個鄉鎮)。M 邊距與 Scatter.tsx 常數一致。
+await resetZoom(); // 雙擊空白處:清掉上一段的縮放與選取,從乾淨狀態開始
+await wheelAt(0.5, 0.5, -300, 6);
+await p.waitForTimeout(900); // 先等縮放觸發的 750ms 位置補間結束,框選才是對「定格後」的畫面
+await selectToggle.click();
+await p.waitForTimeout(150);
+await dragFrac(0.01, 0.02, 0.99, 0.98); // 全框整張 svg(起點=左上角空白邊距,避開泡泡)
+// 可見點數在「拖曳完成後」才量:縮放觸發的 750ms 位置補間中,點還在往繪圖區外滑,
+// 中途量會多算;框選結算讀的是放開瞬間畫面上的實際位置,兩者必須同一時點才可比。
+const visibleN = await p.evaluate(() => {
+  const svg = document.querySelector("g.dots").closest("svg");
+  const vb = svg.viewBox.baseVal;
+  const M = { l: 72, r: 14, t: 14, b: 42 };
+  let n = 0;
+  svg.querySelectorAll("g.dots circle").forEach((c) => {
+    const x = +c.getAttribute("cx"), y = +c.getAttribute("cy");
+    if (x >= M.l && x <= vb.width - M.r && y >= M.t && y <= vb.height - M.b) n++;
+  });
+  return n;
+});
+const selAll = Number((await p.locator(".mini-count").textContent())?.match(/\d+/)?.[0] ?? -1);
+if (selAll === visibleN) ok(`縮放後全框=只選可見點(${selAll} = 繪圖區內 ${visibleN} 顆),隱形點未入選`);
+else fail(`縮放後全框選取數 ${selAll} ≠ 可見點數 ${visibleN}(隱形點可能被誤選)`);
 await selectToggle.click();
 await p.waitForTimeout(150);
 

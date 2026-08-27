@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { townsInRect, excludeFromSelection, type PlacedPoint } from "./brushSelect";
+import { townsInRect, excludeFromSelection, visibleInPlot, type PlacedPoint } from "./brushSelect";
 
 const PTS: PlacedPoint[] = [
   { township: "甲鎮", cx: 10, cy: 10 },
@@ -16,6 +16,18 @@ describe("townsInRect", () => {
     expect(townsInRect(PTS, [[200, 200], [300, 300]])).toEqual([]));
   it("無點回空陣列", () =>
     expect(townsInRect([], [[0, 0], [999, 999]])).toEqual([]));
+});
+
+describe("visibleInPlot 框選前過濾(老師 8/24 bug:縮放後繪圖區外被裁掉的隱形點不得被框選)", () => {
+  it("繪圖區內的點保留、區外(被 clip 裁掉)的點剔除", () =>
+    expect(visibleInPlot(PTS, [[20, 20], [120, 120]])).toEqual([
+      { township: "乙鎮", cx: 50, cy: 50 },
+      { township: "丙鎮", cx: 100, cy: 100 },
+    ]));
+  it("邊界上(等於繪圖區緣)視為可見", () =>
+    expect(visibleInPlot(PTS, [[10, 10], [100, 100]])).toEqual(PTS));
+  it("全部在區外回空陣列", () =>
+    expect(visibleInPlot(PTS, [[500, 500], [600, 600]])).toEqual([]));
 });
 
 describe("excludeFromSelection 雙擊剔除(老師 7/24 需求:只做剔除,不做加回)", () => {

@@ -6,9 +6,9 @@ import * as d3 from "d3";
 import { useTokens } from "../lib/useTokens";
 import { useLanguage } from "../state/LanguageContext";
 import { scatterPoints, scatterDomains, scatterVars, REGIONS, type Values, type Meta, type ScatterKey, type Point } from "../lib/data";
-import { regionColor } from "../lib/scales";
+import { regionColor, strokeHighlight } from "../lib/scales";
 import { makeScale, logTicks, safeDomain, makeColorNormalizer, rampColor, colorTicks, sizeTicks, thinTicks, SYMLOG_C, type ScatterChannels } from "../lib/scatterChannels";
-import { townsInRect } from "../lib/brushSelect";
+import { townsInRect, visibleInPlot, type PlacedPoint } from "../lib/brushSelect";
 import { zoomDomain, panDomain, zoomDomainInSpace, panDomainInSpace, symlogFwd, symlogInv } from "../lib/scatterZoom";
 import { buildScatterCaption } from "../lib/scatterCaption";
 import { countyOf } from "../lib/counties";
@@ -25,13 +25,14 @@ const R_RANGE: [number, number] = [2.5, 16]; // 泡泡半徑(顯示尺寸≈7/20
 // 關係散布圖 crossfilter:X/Y/大小/顏色四通道皆可自由指派指標(對齊老師 bokeh 範例)。
 // 顏色預設「區域」(分類色+區域圖例);選指標時改主題連續色階+漸層色條。
 // 切年份/切通道皆以鄉鎮為 key 做補間動畫。
-export default function Scatter({ values, meta, year, channels, geo, selected, onSelect, onExcludeTown, hoverCounty, showCaption = true }: {
+export default function Scatter({ values, meta, year, channels, geo, selected, onSelect, onExcludeTown, hoverCounty, hoverTown = null, showCaption = true }: {
   values: Values; meta: Meta; year: number;
   channels: ScatterChannels;
   geo: GeoJSON.FeatureCollection;
   selected: string[] | null; onSelect: (s: string[] | null) => void;
   onExcludeTown: (township: string) => void;   // 雙擊剔除(reducer:不動 view)
   hoverCounty: string | null;                  // 地圖懸停縣市(合併單頁:由外殼自主地圖傳入)
+  hoverTown?: string | null;                   // 地圖懸停鄉鎮(縣內層) → 對應單點高亮(老師 8/24 ③)
   showCaption?: boolean;                       // false=白話解說移交外殼(卡內右欄文字區,wireframe v5)
 }) {
   const ref = useRef<SVGSVGElement>(null);
@@ -275,7 +276,10 @@ export default function Scatter({ values, meta, year, channels, geo, selected, o
     // 未選中=灰階淡化(7/23 比稿 A彩色淡化/B隱藏/C灰階 → 選 C):
     // 灰色鬼影保留全體分布脈絡(隱藏會消滅「選取 vs 全國」的比較),顏色只留給選中者。
     const inSel = (p: Point) => !selSet || selSet.has(p.township);
-    sel.transition().duration(dur).ease(d3.easeCubicInOut)
+    // easeCubicOut(老師 8/24 ①):easeCubicInOut 開頭近 1/4 時間幾乎不動,點年份後看起來
+    // 先「凍住」才動;連續點年份時每次中斷重啟速度都歸零,移動變成一頓一頓。改起步即最快、
+    // 減速入位——單次切年立即有回饋,連續切年各段動畫銜接時速度不歸零,才是平滑移動。
+    sel.transition().duration(dur).ease(d3.easeCubicOut)
       .attr("fill", (p) => (inSel(p) ? fill(p) : t.flow.base))
       .attr("fill-opacity", (p) => (inSel(p) ? 0.7 : 0.25))
       .attr("cx", (p) => x(p[xKey])).attr("cy", (p) => y(p[yKey])).attr("r", (p) => r(p[sizeKey]));
@@ -289,10 +293,16 @@ export default function Scatter({ values, meta, year, channels, geo, selected, o
     const dots = d3.select(ref.current).select<SVGGElement>("g.dots");
     const selSet = selected ? new Set(selected) : null;
     const hovered = (p: Point) => !!(hoverCounty && townCounty.get(p.township) === hoverCounty);
+    // 地圖懸停 → 散布圖高亮(老師 8/24 ③):全國層懸停縣市=該縣全部泡泡描邊、縣內層懸停
+    // 鄉鎮=對應單點更粗描邊+抬到最上層(密集群聚時單點常被鄰近大泡泡蓋住,不抬看不到反應)。
+    // 兩種懸停描邊都用與地圖選取/hover 外框同一個玫紅(使用者回饋「跟選取地圖框一樣的粉色
+    // 比較明顯」;accent 青綠會融進「中」區域同色泡泡的填色,見 scales.ts 註解)。
+    const isHoverTown = (p: Point) => p.township === hoverTown;
     dots.selectAll<SVGCircleElement, Point>("circle")
-      .attr("stroke", (p) => (hovered(p) || selSet?.has(p.township) ? t.accent : t.surface))
-      .attr("stroke-width", (p) => (hovered(p) ? 1.8 : selSet?.has(p.township) ? 1.2 : 0.5));
-  }, [hoverCounty, townCounty, t, values, meta, year, xKey, yKey, sizeKey, colorKey, selected]);
+      .attr("stroke", (p) => (isHoverTown(p) || hovered(p) ? strokeHighlight(t.dark) : selSet?.has(p.township) ? t.accent : t.surface))
+      .attr("stroke-width", (p) => (isHoverTown(p) ? 2.5 : hovered(p) ? 1.8 : selSet?.has(p.township) ? 1.2 : 0.5));
+    if (hoverTown) dots.selectAll<SVGCircleElement, Point>("circle").filter((p) => isHoverTown(p)).raise();
+  }, [hoverCounty, hoverTown, townCounty, t, values, meta, year, xKey, yKey, sizeKey, colorKey, selected]);
 
   // 框選(d3.brush):放開瞬間依模式做二選一——選取=框內泡泡併入名單(累加)、
   // 清除=框內泡泡移出名單(累減)。縮放改走滾輪(見下方 wheel effect),不再經過框選。
@@ -375,9 +385,17 @@ export default function Scatter({ values, meta, year, channels, geo, selected, o
           return;
         }
         const rectSel = ev.selection as [[number, number], [number, number]];
-        const pts = scatterPoints(values, meta, year)
-          .map((p) => ({ township: p.township, cx: x(p[xKey]), cy: y(p[yKey]) }));
-        const names = townsInRect(pts, rectSel);
+        // 所見即所得(老師 8/24 ②,兩個成因一次解):
+        // ① 候選座標改讀「畫面上實際渲染」的 cx/cy——切年補間動畫進行中框選,選到的是
+        //    使用者眼前圈住的位置,而不是用比例尺算出的動畫終點未來位置;
+        // ② visibleInPlot 過濾繪圖區外被 clipPath 裁掉的隱形點(滾輪縮放後比例尺外插出去的
+        //    座標)——實測未過濾時圈 13 顆可見點會選進 32 個鄉鎮,19 個是看不見的。
+        const pts: PlacedPoint[] = [];
+        svg.select<SVGGElement>("g.dots").selectAll<SVGCircleElement, Point>("circle")
+          .each(function (p) {
+            pts.push({ township: p.township, cx: +this.getAttribute("cx")!, cy: +this.getAttribute("cy")! });
+          });
+        const names = townsInRect(visibleInPlot(pts, [[M.l, M.t], [W - M.r, H - M.b]]), rectSel);
         if (mode === "select") {
           select([...new Set([...(selected ?? []), ...names])]);
         } else {

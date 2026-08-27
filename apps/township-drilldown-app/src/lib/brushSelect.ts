@@ -9,6 +9,17 @@ export function excludeFromSelection(selected: string[] | null, township: string
   return next.length ? next : null;
 }
 
+// 框選候選=「使用者看得見」的點(老師 8/24 bug):滾輪縮放後,繪圖區外的點被 clipPath 裁掉
+// 但座標仍在,直接丟進 townsInRect 會把隱形點也框進名單(實測圈 13 顆可見點選進 32 鄉鎮)。
+// 先以繪圖區矩形過濾,再做框內判定。
+export function visibleInPlot(
+  pts: PlacedPoint[],
+  plot: [[number, number], [number, number]],
+): PlacedPoint[] {
+  const [[px0, py0], [px1, py1]] = plot;
+  return pts.filter((p) => p.cx >= px0 && p.cx <= px1 && p.cy >= py0 && p.cy <= py1);
+}
+
 export function townsInRect(
   pts: PlacedPoint[],
   rect: [[number, number], [number, number]],
